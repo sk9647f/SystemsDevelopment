@@ -66,7 +66,7 @@ public class Play
         connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
-        OleDbCommand myCommand = new OleDbCommand("UPDATE Plays, SET Title = @Title, WHERE Title = @OldTitle && PlayID = @playID, myConnection);
+        OleDbCommand myCommand = new OleDbCommand("UPDATE Plays, SET /*@Inputstring*/  Title = @Title, WHERE Title = @OldTitle && PlayID = @playID, myConnection);
 
         myCommand.Parameters.AddWithValue("@PlayID", playID);
         myCommand.Parameters.AddWithValue("@Title", title);
