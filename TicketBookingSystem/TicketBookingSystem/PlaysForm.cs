@@ -46,7 +46,7 @@ namespace TicketBookingSystem
         public void AddPlay(/*string addTitle, string addGenre, string addDescription, string addDateOfPlay, string addTimeOfPlay, string addTicketsAvailable, string addTicketsQuantity*/)
         {
         
-            playID = 1;
+            
             title = Titlet.Text;
             genre = Genret.Text;
             description = Descriptiont.Text;
@@ -61,9 +61,9 @@ namespace TicketBookingSystem
             connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
-            OleDbCommand myCommand = new OleDbCommand("INSERT INTO Plays (PlayID, Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketsQuantity) VALUES (?,?,?,?,?,?,?,?)", myConnection);
+            OleDbCommand myCommand = new OleDbCommand("INSERT INTO Plays (Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketsQuantity) VALUES (?,?,?,?,?,?,?)", myConnection);
 
-            myCommand.Parameters.AddWithValue("@PlayID", playID);
+            
             myCommand.Parameters.AddWithValue("@Title", title);
             myCommand.Parameters.AddWithValue("@Genre", genre);
             myCommand.Parameters.AddWithValue("@Description", description);
