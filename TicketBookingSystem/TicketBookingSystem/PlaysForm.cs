@@ -45,8 +45,7 @@ namespace TicketBookingSystem
 
         public void AddPlay(/*string addTitle, string addGenre, string addDescription, string addDateOfPlay, string addTimeOfPlay, string addTicketsAvailable, string addTicketsQuantity*/)
         {
-        
-            
+            //playID = 1;
             title = Titlet.Text;
             genre = Genret.Text;
             description = Descriptiont.Text;
@@ -58,12 +57,12 @@ namespace TicketBookingSystem
 
 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             OleDbCommand myCommand = new OleDbCommand("INSERT INTO Plays (Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketsQuantity) VALUES (?,?,?,?,?,?,?)", myConnection);
 
-            
+            //myCommand.Parameters.AddWithValue("@PlayID", playID);
             myCommand.Parameters.AddWithValue("@Title", title);
             myCommand.Parameters.AddWithValue("@Genre", genre);
             myCommand.Parameters.AddWithValue("@Description", description);
@@ -116,19 +115,20 @@ namespace TicketBookingSystem
             //May need more identifiers to prevent clashes
         }
 
-        public string DisplayReview(string readTitle, string readDate)
+        public string DisplayReview(/*string readTitle, string readDate*/)
         {
+            string input = Genret.Text;
             string returnReview = "";
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
 
 
-            OleDbCommand myCommand = new OleDbCommand("SELECT Reviews FROM Plays WHERE Title = @Title", myConnection);
-            myCommand.Parameters.AddWithValue("@Title", readTitle);
+            OleDbCommand myCommand = new OleDbCommand("SELECT Title FROM Plays WHERE Title = @Title", myConnection);
+            myCommand.Parameters.AddWithValue("@Title", input);
 
 
 
@@ -139,6 +139,7 @@ namespace TicketBookingSystem
 
             }
             reader.Close();
+            TitleL.Text = returnReview;
             return returnReview;
 
 
@@ -146,8 +147,41 @@ namespace TicketBookingSystem
 
         private void AddPlay1_Click(object sender, EventArgs e)
         {
-            AddPlay1.Enabled = false;
+           
             AddPlay1.Visible = false;
+
+            AddBack.Visible = true;
+
+            TitleL.Visible = true;
+
+            Titlet.Visible = true;
+
+            Genrel.Visible = true;
+            
+            Genret.Visible = true;
+
+            Descriptionl.Visible = true;
+
+            Descriptiont.Visible = true;
+
+            Datel.Visible = true;
+
+            Datel.Visible = true;
+
+            Datet.Visible = true;
+
+            Timel.Visible = true;
+
+            Timet.Visible = true;
+
+            TicketsAval.Visible = true;
+
+            TicketsAvat.Visible = true;
+
+            TicketQuanl.Visible = true;
+
+            TicketQuant.Visible = true;
+
 
             
         }
@@ -161,6 +195,11 @@ namespace TicketBookingSystem
         private void InputNewPlay_Click(object sender, EventArgs e)
         {
             AddPlay();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DisplayReview();
         }
 
 
