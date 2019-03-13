@@ -59,12 +59,24 @@ public class Play
 
     }
 
-    public void EditPlay(string editTitle, string editDate)
+    public void EditTitle(string editTitle)
     {
-        //Unsure on how the edit will work. Will we force the user into editting the entire file or just certain lines.	
-        //For example will this pull up the entire row for a certain play and the user edits it all and re inputs it.
-        //Or will the user be able to simply specify what fields they want to alter within the ui and it becomes a replace rather than reinsert.
+        title = editTitle;
+        string connString;
+        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+        OleDbConnection myConnection = new OleDbConnection(connString);
+        myConnection.Open();
+        OleDbCommand myCommand = new OleDbCommand("UPDATE Plays, SET Title = @Title, WHERE Title = @OldTitle && PlayID = @playID, myConnection);
+
+        myCommand.Parameters.AddWithValue("@PlayID", playID);
+        myCommand.Parameters.AddWithValue("@Title", title);
+        
+
+        myCommand.ExecuteNonQuery();
+        myConnection.Close();
     }
+                                                  
+    
 
     public void DeletePlay(string deleteTitle, string deleteDate)
     {
