@@ -13,9 +13,21 @@ namespace TicketBookingSystem
 {
     public partial class Account : Form
     {
+        string LoginUsername;
+        string LoginPassword;
+        string Username;
+        string Password;
+        string Fname;
+        string Sname;
+        string Address;
+        string PhoneNum;
+        string Email;
+        bool staff;
+
         public Account()
         {
             InitializeComponent();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -36,8 +48,9 @@ namespace TicketBookingSystem
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            string LoginUsername = textBox13.Text;
-            string LoginPassword = textBox14.Text;
+            LoginUsername = textBox13.Text;
+            LoginPassword = textBox14.Text;
+            
 
 
 
@@ -50,10 +63,12 @@ namespace TicketBookingSystem
 
             myCommand.Parameters.AddWithValue("@Username", LoginUsername);
             myCommand.Parameters.AddWithValue("@Password", LoginPassword);
-            //myCommand.ExecuteNonQuery();
 
+            //myCommand.ExecuteNonQuery();
+           
             OleDbDataReader re = myCommand.ExecuteReader();
 
+            
             if (re.Read() == true)
             {
                 MessageBox.Show("Account found");
@@ -61,16 +76,47 @@ namespace TicketBookingSystem
                 RegisterPanel.Visible = false;
                 StaffAccountPanel.Visible = false;
                 AccountPanel.Visible = true;
+                
+                re.Close();
+
+                OleDbCommand staffCommand = new OleDbCommand("SELECT Staff FROM [User] WHERE Username = @Username", myConnection);
+                //staffCommand.Parameters.AddWithValue("@Staff", staff);
+                staffCommand.Parameters.AddWithValue("@Username", LoginUsername);
+
+                OleDbDataReader res = staffCommand.ExecuteReader();
+                while (res.Read())
+                {
+                    staff = Convert.ToBoolean(res["Staff"]);
+                    if (staff)
+                    {
+                        StaffAccountPanel.Visible = true;
+                        AccountPanel.Visible = false;
+                    } 
+                    
+                    
+                   
+                  
+                }
+               
+                
+
                 label11.Text = LoginUsername;
                 textBox13.Text = "";
                 textBox14.Text = "";
 
+                
             }
-
             else
             {
                 MessageBox.Show("Account not found");
             }
+
+           
+
+
+
+
+
 
             myConnection.Close();
 
@@ -88,27 +134,28 @@ namespace TicketBookingSystem
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            string Username = textBox1.Text;
-            string Password = textBox2.Text;
-            string Fname = textBox3.Text;
-            string Sname = textBox4.Text;
-            string Address = textBox5.Text;
-            string PhoneNum = textBox6.Text;
-            string Email = textBox7.Text;
+            Username = textBox1.Text;
+            Password = textBox2.Text;
+            Fname = textBox3.Text;
+            Sname = textBox4.Text;
+            Address = textBox5.Text;
+            PhoneNum = textBox6.Text;
+            Email = textBox7.Text;
 
 
             Customer customer = new Customer();
             customer.AddUser(Username, Password, Fname, Sname, Address, PhoneNum, Email);
             MessageBox.Show("Account Created");
 
-            string CurrentUsername = "";
+            //string CurrentUsername = "";
 
 
 
 
 
-            label11.Text = customer.userName;
-
+            label11.Text = LoginUsername;
+            LoginPanel.Visible = true;
+            RegisterPanel.Visible = false;
 
         }
 
@@ -118,6 +165,7 @@ namespace TicketBookingSystem
             RegisterPanel.Visible = false;
             AccountPanel.Visible = false;
             StaffAccountPanel.Visible = false;
+            LoginUsername = " ";
 
         }
 
@@ -131,6 +179,53 @@ namespace TicketBookingSystem
 
         private void AddPlayButton_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+
+            // OleDbCommand myCommand = new OleDbCommand("DELETE FROM [User] WHERE Username = @Username", myConnection);
+
+            var confirmResult = MessageBox.Show("Are you sure to delete your account??",
+                                     "Confirm Delete!!",
+                                     MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+
+                OleDbCommand myCommand = new OleDbCommand("DELETE FROM [User] WHERE Username = @Username", myConnection);
+                myCommand.Parameters.AddWithValue("@Username", LoginUsername);
+
+                LoginUsername = " ";
+                myConnection.Open();
+                myCommand.ExecuteNonQuery();
+                myConnection.Close();
+
+                LoginPanel.Visible = true;
+                AccountPanel.Visible = false;
+            }
+            else
+            {
+                // If 'No', do something here.
+            }
+
+            //myCommand.Parameters.AddWithValue("@Username", LoginUsername);
+
+            //LoginUsername = " ";
+
+
+            //myConnection.Open();
+            // myCommand.ExecuteNonQuery();
+            // myConnection.Close();
+        }
+
+        private void EditPersonalInfoButton_Click(object sender, EventArgs e)
+        {
+            RegisterPanel.Visible = true;
 
         }
     }

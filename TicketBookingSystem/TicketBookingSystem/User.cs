@@ -19,6 +19,8 @@ namespace TicketBookingSystem
         public string phoneNumber;
         public string email;
         public bool staff;
+        public string loginUsername;
+        public string loginPassword;
 
 
 
@@ -31,6 +33,7 @@ namespace TicketBookingSystem
         public abstract void DisplayProfile();
         public abstract void GetUserInfo();
         //public abstract void BrowsePlays();
+        public abstract void EditPersonalDetails();
 
     }
 
@@ -77,21 +80,21 @@ namespace TicketBookingSystem
         public override void DeleteUser(string user, string pass)
         {
             //delete row from database
-            string connString;
+            /*string connString;
             connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
 
-            OleDbCommand myCommand = new OleDbCommand("INSERT INTO [User] (Username, [Password]) VALUES (?, ?)", myConnection);
+            OleDbCommand myCommand = new OleDbCommand("DELETE FROM [User] WHERE Username = @Username", myConnection);
 
             
            
-            myCommand.Parameters.AddWithValue("@Username", user);
-            myCommand.Parameters.AddWithValue("@Password", pass);
+            myCommand.Parameters.AddWithValue("@Username", loginUsername);
+            
            
             myConnection.Open();
             myCommand.ExecuteNonQuery();
-            myConnection.Close();
+            myConnection.Close();*/
         }
 
         public override void DisplayProfile()
@@ -103,18 +106,20 @@ namespace TicketBookingSystem
         {
             //search database for password and username and if staff or not 
         }
-
-        public override void GetUserInfo()
-        {
-            //read from database 
-        }
+ 
 
         public void ViewOrderHistory()
         {
 
         }
 
-        public void EditPersonalDetails()
+
+        public override void GetUserInfo()
+        {
+
+        }
+
+        public override void EditPersonalDetails()
         {
 
         }
@@ -171,6 +176,12 @@ namespace TicketBookingSystem
         {
 
         }
+
+        public override void EditPersonalDetails()
+        {
+
+        }
+
 
 
     }

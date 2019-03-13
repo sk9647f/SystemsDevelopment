@@ -18,7 +18,7 @@ namespace TicketBookingSystem
 
         }
 
-        public void DeletReview()
+        public void DeleteReview()
         {
 
         }

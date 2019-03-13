@@ -66,6 +66,8 @@
             this.AllTicketHistoryButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.buttonSaveDetails = new System.Windows.Forms.Button();
             this.RegisterPanel.SuspendLayout();
             this.LoginPanel.SuspendLayout();
             this.AccountPanel.SuspendLayout();
@@ -74,6 +76,7 @@
             // 
             // RegisterPanel
             // 
+            this.RegisterPanel.Controls.Add(this.buttonSaveDetails);
             this.RegisterPanel.Controls.Add(this.submitButton);
             this.RegisterPanel.Controls.Add(this.label9);
             this.RegisterPanel.Controls.Add(this.label7);
@@ -285,6 +288,7 @@
             // 
             // AccountPanel
             // 
+            this.AccountPanel.Controls.Add(this.button2);
             this.AccountPanel.Controls.Add(this.logOutButton);
             this.AccountPanel.Controls.Add(this.EditPersonalInfoButton);
             this.AccountPanel.Controls.Add(this.UserTicketHistoryButton);
@@ -297,7 +301,7 @@
             // 
             // logOutButton
             // 
-            this.logOutButton.Location = new System.Drawing.Point(102, 186);
+            this.logOutButton.Location = new System.Drawing.Point(49, 187);
             this.logOutButton.Name = "logOutButton";
             this.logOutButton.Size = new System.Drawing.Size(102, 43);
             this.logOutButton.TabIndex = 4;
@@ -313,8 +317,9 @@
             this.EditPersonalInfoButton.Name = "EditPersonalInfoButton";
             this.EditPersonalInfoButton.Size = new System.Drawing.Size(134, 66);
             this.EditPersonalInfoButton.TabIndex = 3;
-            this.EditPersonalInfoButton.Text = "Edit Personal Infomation";
+            this.EditPersonalInfoButton.Text = "View Personal Infomation";
             this.EditPersonalInfoButton.UseVisualStyleBackColor = false;
+            this.EditPersonalInfoButton.Click += new System.EventHandler(this.EditPersonalInfoButton_Click);
             // 
             // UserTicketHistoryButton
             // 
@@ -455,6 +460,25 @@
             this.label12.TabIndex = 1;
             this.label12.Text = "Welcome back";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(173, 186);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(102, 43);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Delete Account";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // buttonSaveDetails
+            // 
+            this.buttonSaveDetails.Location = new System.Drawing.Point(215, 293);
+            this.buttonSaveDetails.Name = "buttonSaveDetails";
+            this.buttonSaveDetails.Size = new System.Drawing.Size(81, 45);
+            this.buttonSaveDetails.TabIndex = 16;
+            this.buttonSaveDetails.Text = "save changes";
+            this.buttonSaveDetails.UseVisualStyleBackColor = true;
+            // 
             // Account
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -520,5 +544,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button StaffLogoutButton;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonSaveDetails;
     }
 }
