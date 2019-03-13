@@ -9,6 +9,7 @@ public class Play
 
 {
     int playID;
+    string oldTitle;
     string title;
     string genre;
     string description; // include duration of play
@@ -59,9 +60,11 @@ public class Play
 
     }
 
-    public void EditTitle(string editTitle)
+    public void EditTitle(string editTitle, string Oldtitle, int PlayID)
     {
         title = editTitle;
+        playID = PlayID;
+        oldTitle = OldRitle;
         string connString;
         connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
         OleDbConnection myConnection = new OleDbConnection(connString);
