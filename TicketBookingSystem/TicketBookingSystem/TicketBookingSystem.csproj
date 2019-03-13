@@ -52,6 +52,12 @@
       <DependentUpon>Account.cs</DependentUpon>
     </Compile>
     <Compile Include="Basket.cs" />
+    <Compile Include="BasketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BasketForm.Designer.cs">
+      <DependentUpon>BasketForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Checkout.cs" />
     <Compile Include="Discounts.cs" />
     <Compile Include="Form1.cs">
@@ -62,6 +68,12 @@
     </Compile>
     <Compile Include="Order.cs" />
     <Compile Include="Play.cs" />
+    <Compile Include="PlaysForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaysForm.Designer.cs">
+      <DependentUpon>PlaysForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reviews.cs" />
@@ -74,8 +86,14 @@
     <EmbeddedResource Include="Account.resx">
       <DependentUpon>Account.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BasketForm.resx">
+      <DependentUpon>BasketForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaysForm.resx">
+      <DependentUpon>PlaysForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

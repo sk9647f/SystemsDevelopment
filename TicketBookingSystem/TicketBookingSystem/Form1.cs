@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -73,6 +73,12 @@ namespace TicketBookingSystem
         {
             BasketForm basketForm = new BasketForm();
             basketForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PlaysForm playForm = new PlaysForm();
+            playForm.ShowDialog();
         }
     }
 }

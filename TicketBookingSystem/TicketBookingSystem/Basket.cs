@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,12 +28,12 @@ namespace TicketBookingSystem
 
             //needs to write to database 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = C:\Users\user\Desktop\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
 
             OleDbCommand myCommand = new OleDbCommand("INSERT INTO Basket (UserID, PlayChosen, Price, Quantity, PlayDate, TicketType) VALUES (?, ?, ?, ?, ?, ?)", myConnection);
-            
+
             myCommand.Parameters.AddWithValue("@UserID", user);
             myCommand.Parameters.AddWithValue("@PlayChosen", play);
             myCommand.Parameters.AddWithValue("@Price", cost);
@@ -63,7 +63,7 @@ namespace TicketBookingSystem
         }
 
         public void AddToBasket()
-        { 
+        {
         }
 
         public override void RemoveFromBasket()

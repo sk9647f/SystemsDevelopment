@@ -22,8 +22,8 @@ namespace TicketBookingSystem
         {
             InitializeComponent();
         }
-    
-    
+
+
         int playID;
         string oldTitle;
         string title;
@@ -87,7 +87,7 @@ namespace TicketBookingSystem
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             OleDbCommand myCommand = new OleDbCommand("UPDATE Plays, SET Title = @Title, WHERE Title = @OldTitle && PlayID = @playID)", myConnection);
-    
+
 
             myCommand.Parameters.AddWithValue("@PlayID", playID);
             myCommand.Parameters.AddWithValue("@Title", title);
@@ -147,7 +147,7 @@ namespace TicketBookingSystem
 
         private void AddPlay1_Click(object sender, EventArgs e)
         {
-           
+
             AddPlay1.Visible = false;
 
             AddBack.Visible = true;
@@ -157,7 +157,7 @@ namespace TicketBookingSystem
             Titlet.Visible = true;
 
             Genrel.Visible = true;
-            
+
             Genret.Visible = true;
 
             Descriptionl.Visible = true;
@@ -183,7 +183,7 @@ namespace TicketBookingSystem
             TicketQuant.Visible = true;
 
 
-            
+
         }
 
         private void AddBack_Click(object sender, EventArgs e)

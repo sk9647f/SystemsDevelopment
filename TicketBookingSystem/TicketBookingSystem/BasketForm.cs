@@ -17,11 +17,11 @@ namespace TicketBookingSystem
         {
             InitializeComponent();
 
-            string LoginUsername = "User";
+            string LoginUsername = "User1";
             object[] meta = new object[1];
             bool read = true;
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = C:\Users\user\Desktop\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
@@ -37,21 +37,21 @@ namespace TicketBookingSystem
                 {
                     int NumberOfColums = reader.GetValues(meta);
                     int NumberOfRows = reader.GetValues(meta);
-                    string play = reader.GetString(1);
-                    int quantity = reader.GetInt32(3);
-                    string TicketType = reader.GetString(6);
+                    string play = reader.GetString(2);
+                    int quantity = reader.GetInt32(6);
+                    string TicketType = reader.GetString(3);
 
                     {
                         for (int j = 0; j < NumberOfRows; j++)
-                            if (TicketType == "<div>Standard</div>")
+                            if (TicketType == "<div>Standard</div>" || TicketType == "Standard")
                             {
                                 numericUpDown1.Value += quantity;
                             }
-                            else if (TicketType == "<div>Child</div>")
+                            else if (TicketType == "<div>Child</div>" || TicketType == "Child")
                             {
                                 numericUpDown2.Value += quantity;
-                            } 
-                            else if (TicketType == "<div>OAP</div>")
+                            }
+                            else if (TicketType == "<div>OAP</div>" || TicketType == "OAP")
                             {
                                 numericUpDown3.Value += quantity;
                             }

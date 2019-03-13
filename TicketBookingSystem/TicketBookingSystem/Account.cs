@@ -30,7 +30,7 @@ namespace TicketBookingSystem
             AccountPanel.Visible = false;
             StaffAccountPanel.Visible = false;
 
-            
+
 
         }
 
@@ -42,7 +42,7 @@ namespace TicketBookingSystem
 
 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = I:\Sys Dev CW\TicketBookingSystem\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();

@@ -189,7 +189,7 @@
             this.InputNewPlay.Text = "Input Play Details";
             this.InputNewPlay.UseVisualStyleBackColor = true;
             this.InputNewPlay.Click += new System.EventHandler(this.InputNewPlay_Click);
-            
+
             // 
             // AddBack
             // 
