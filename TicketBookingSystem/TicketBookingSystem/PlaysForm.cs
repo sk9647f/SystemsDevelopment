@@ -45,6 +45,8 @@ namespace TicketBookingSystem
 
         public void AddPlay(/*string addTitle, string addGenre, string addDescription, string addDateOfPlay, string addTimeOfPlay, string addTicketsAvailable, string addTicketsQuantity*/)
         {
+        
+            playID = 1;
             title = Titlet.Text;
             genre = Genret.Text;
             description = Descriptiont.Text;
