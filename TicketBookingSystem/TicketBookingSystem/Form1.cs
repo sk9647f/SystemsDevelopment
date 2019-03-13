@@ -22,5 +22,11 @@ namespace TicketBookingSystem
             Account accountForm = new Account();
             accountForm.ShowDialog();
         }
+        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            PlaysForm playForm = new PlaysForm();
+            playForm.ShowDialog();
+        }
     }
 }
