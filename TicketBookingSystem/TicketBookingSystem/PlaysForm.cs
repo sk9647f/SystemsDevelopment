@@ -7,11 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Data.OleDb;
 
 namespace TicketBookingSystem
@@ -20,10 +16,12 @@ namespace TicketBookingSystem
     {
         public PlaysForm()
         {
+            
             InitializeComponent();
+            DisplayPlays();
         }
-
-
+    
+    
         int playID;
         string oldTitle;
         string title;
@@ -34,14 +32,6 @@ namespace TicketBookingSystem
         //have to use datetime function to switch from a string into a formatted datetime
         string ticketsAvailable;
         string ticketsQuantity;
-
-        // Might not need any full class variables if arguments are given in by the main. As this class doesn't create any objects with these varialbes, only pushes them between the code and database.
-
-
-
-        //Unsure on what functionality can be implemented without a linked database being created before hand
-
-
 
         public void AddPlay(/*string addTitle, string addGenre, string addDescription, string addDateOfPlay, string addTimeOfPlay, string addTicketsAvailable, string addTicketsQuantity*/)
         {
@@ -57,7 +47,7 @@ namespace TicketBookingSystem
 
 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             OleDbCommand myCommand = new OleDbCommand("INSERT INTO Plays (Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketsQuantity) VALUES (?,?,?,?,?,?,?)", myConnection);
@@ -77,37 +67,88 @@ namespace TicketBookingSystem
 
         }
 
-        public void EditTitle(string editTitle, string Oldtitle, int PlayID)
+        public void EditPlayFields(string Input)
         {
-            title = editTitle;
-            playID = PlayID;
-            oldTitle = Oldtitle;
+            string InputField = Input;
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
-            OleDbCommand myCommand = new OleDbCommand("UPDATE Plays, SET Title = @Title, WHERE Title = @OldTitle && PlayID = @playID)", myConnection);
+            
+
+            
+            
+
+            if(InputField == "Title")
+            {
+                OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET Title = @Change WHERE PlayID = @PlayID", myConnection);
+                myCommand.Parameters.AddWithValue("@Change", Titlet.Text);
+                myCommand.Parameters.AddWithValue("@PlayID", PlayIDt.Text);
+                myCommand.ExecuteNonQuery();
+            }
+            if (InputField == "Description")
+            {
+                OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET Description = @Change WHERE PlayID = @PlayID", myConnection);
+                myCommand.Parameters.AddWithValue("@Change", Descriptiont.Text);
+                myCommand.Parameters.AddWithValue("@PlayID", PlayIDt.Text);
+                myCommand.ExecuteNonQuery();
+            }
+            if (InputField == "Genre")
+            {
+                OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET Genre = @Change WHERE PlayID = @PlayID", myConnection);
+                myCommand.Parameters.AddWithValue("@Change", Genret.Text);
+                myCommand.Parameters.AddWithValue("@PlayID", PlayIDt.Text);
+                myCommand.ExecuteNonQuery();
+            }
+            if (InputField == "DateOfPlay")
+            {
+                OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET DateOfPlay = @Change WHERE PlayID = @PlayID", myConnection);
+                myCommand.Parameters.AddWithValue("@Change", Datet.Text);
+                myCommand.Parameters.AddWithValue("@PlayID", PlayIDt.Text);
+                myCommand.ExecuteNonQuery();
+            }
+            if (InputField == "TimeOfPlay")
+            {
+                OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET TimeOfPlay = @Change WHERE PlayID = @PlayID", myConnection);
+                myCommand.Parameters.AddWithValue("@Change", Timet.Text);
+                myCommand.Parameters.AddWithValue("@PlayID", PlayIDt.Text);
+                myCommand.ExecuteNonQuery();
+
+            }
+            if (InputField == "TicketsAvailable")
+            {
+                OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET TicketsAvailable = @Change WHERE PlayID = @PlayID", myConnection);
+                myCommand.Parameters.AddWithValue("@Change", TicketsAvat.Text);
+                myCommand.Parameters.AddWithValue("@PlayID", PlayIDt.Text);
+                myCommand.ExecuteNonQuery();
+            }
+            if (InputField == "TicketsQuantity")
+            {
+                OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET TicketsQuantity = @Change WHERE PlayID = @PlayID", myConnection);
+                myCommand.Parameters.AddWithValue("@Change", TicketQuant.Text);
+                myCommand.Parameters.AddWithValue("@PlayID", PlayIDt.Text);
+                myCommand.ExecuteNonQuery();
+            }
 
 
-            myCommand.Parameters.AddWithValue("@PlayID", playID);
-            myCommand.Parameters.AddWithValue("@Title", title);
 
 
-            myCommand.ExecuteNonQuery();
+            
             myConnection.Close();
         }
 
-
-
-        public void DeletePlay(string deleteTitle, string deleteDate)
+        public void DeletePlay()
         {
+
+
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
 
-            OleDbCommand myCommand = new OleDbCommand("DELETE FROM Plays WHERE Title = TitleDelete ", myConnection);
-            myCommand.Parameters.AddWithValue("@TitleDelete", deleteTitle);
+            OleDbCommand myCommand = new OleDbCommand("DELETE FROM Plays WHERE Title = @Title  AND PlayID = @PlayID ", myConnection);
+            myCommand.Parameters.AddWithValue("@Title", Titlet.Text);
+            myCommand.Parameters.AddWithValue("@PlayID", PlayIDt.Text);
 
             myCommand.ExecuteNonQuery();
             myConnection.Close();
@@ -120,7 +161,7 @@ namespace TicketBookingSystem
             string input = Genret.Text;
             string returnReview = "";
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
 
             OleDbConnection myConnection = new OleDbConnection(connString);
@@ -145,12 +186,267 @@ namespace TicketBookingSystem
 
         }
 
+        public string DisplayPlays()
+        {
+            
+            string returnAllPlays = "";
+            string initialreturn ="";
+            string addString = "";
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+
+            
+                
+           OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE PlayID = 0", myConnection);
+             
+           OleDbDataReader reader = myCommand.ExecuteReader();
+           while (reader.Read())
+           {
+                initialreturn = reader.GetString(0);
+                addString += "Title: " + initialreturn + "  ";
+                initialreturn = reader.GetString(1);
+                addString += "Date: " + initialreturn + "  ";
+                initialreturn = reader.GetString(2);
+                addString += "Time: " + initialreturn + "\n";
+                addString += "\n";
+                addString += "\n";
+
+
+            }
+            reader.Close();
+           
+           
+
+            OleDbCommand myCommand2 = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE PlayID = 1", myConnection);
+
+            OleDbDataReader reader2 = myCommand2.ExecuteReader();
+            while (reader2.Read())
+            {
+                initialreturn = reader2.GetString(0);
+                addString += "Title: " + initialreturn + "  ";
+                initialreturn = reader2.GetString(1);
+                addString += "Date: " + initialreturn + "  ";
+                initialreturn = reader2.GetString(2);
+                addString += "Time: " + initialreturn + "\n";
+                addString += "\n";
+                addString += "\n";
+            }
+            
+            
+
+            OleDbCommand myCommand3 = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE PlayID = 2", myConnection);
+
+            OleDbDataReader reader3 = myCommand3.ExecuteReader();
+            while (reader3.Read())
+            {
+                initialreturn = reader3.GetString(0);
+                addString += "Title: " + initialreturn + "  ";
+                initialreturn = reader3.GetString(1);
+                addString += "Date: " + initialreturn + "  ";
+                initialreturn = reader3.GetString(2);
+                addString += "Time: " + initialreturn + "\n";
+                addString += "\n";
+                addString += "\n";
+
+            }
+            reader.Close();
+            
+
+
+    
+
+            myConnection.Close();
+            
+            returnAllPlays = addString;
+
+            AllPlaysl.Text = returnAllPlays;
+            return returnAllPlays;
+            
+        }
+
         private void AddPlay1_Click(object sender, EventArgs e)
         {
+            EditPlayB.Visible = false;
 
             AddPlay1.Visible = false;
 
             AddBack.Visible = true;
+
+            DeletePlayB.Visible = false;
+
+            TitleL.Visible = true;
+
+            Titlet.Visible = true;
+
+            Genrel.Visible = true;
+            
+            Genret.Visible = true;
+
+            Descriptionl.Visible = true;
+
+            Descriptiont.Visible = true;
+
+            Datel.Visible = true;
+
+            Datel.Visible = true;
+
+            Datet.Visible = true;
+
+            Timel.Visible = true;
+
+            Timet.Visible = true;
+
+            TicketsAval.Visible = true;
+
+            TicketsAvat.Visible = true;
+
+            TicketQuanl.Visible = true;
+
+            TicketQuant.Visible = true;
+
+            InputNewPlay.Visible = true;
+
+            AddBack.Visible = true;
+
+            AllPlaysl.Visible = false;
+
+
+            
+        }
+
+        private void AddBack_Click(object sender, EventArgs e)
+        {
+            EditPlayB.Visible = true;
+
+            AddPlay1.Visible = true;
+
+            AddBack.Visible = false;
+
+            PlayIDl.Visible = false;
+
+            PlayIDt.Visible = false;
+
+            TitleL.Visible = false;
+
+            Titlet.Visible = false;
+
+            Genrel.Visible = false;
+
+            Genret.Visible = false;
+
+            Descriptionl.Visible = false;
+
+            Descriptiont.Visible = false;
+
+            Datel.Visible = false;
+
+            Datel.Visible = false;
+
+            Datet.Visible = false;
+
+            Timel.Visible = false;
+
+            Timet.Visible = false;
+
+            TicketsAval.Visible = false;
+
+            TicketsAvat.Visible = false;
+
+            TicketQuanl.Visible = false;
+
+            TicketQuant.Visible = false;
+
+            InputNewPlay.Visible = false;
+
+            AddBack.Visible =  false;
+
+            AllPlaysl.Visible = true;
+
+            DeletePlayB.Visible = true;
+
+            DeleteConfB.Visible = false;
+
+            EditTitleB.Visible = false;
+
+            EditGenreB.Visible = false;
+
+            EditDescripB.Visible = false;
+
+            EditDateB.Visible = false;
+
+            EditTimeB.Visible = false;
+
+            EditTiQuB.Visible = false;
+
+            EditTiAvB.Visible = false;
+
+
+
+        }
+
+        private void InputNewPlay_Click(object sender, EventArgs e)
+        {
+            AddPlay();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DisplayReview();
+        }
+
+        private void PlaysForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeletePlayB_Click(object sender, EventArgs e)
+        {
+
+            AddPlay1.Visible = false;
+
+            DeletePlayB.Visible = false;
+
+            DeleteConfB.Visible = true;
+
+            PlayIDl.Visible = true;
+
+            PlayIDt.Visible = true;
+
+            TitleL.Visible = true;
+
+            Titlet.Visible = true;
+
+            AddBack.Visible = true;
+
+            InputNewPlay.Visible = false;
+
+            AllPlaysl.Visible = false;
+
+            EditPlayB.Visible = false;
+        }
+
+        private void DeleteConfB_Click(object sender, EventArgs e)
+        {
+            DeletePlay();
+        }
+
+        private void EditPlayB_Click(object sender, EventArgs e)
+        {
+            EditPlayB.Visible = false;
+
+            AddPlay1.Visible = false;
+
+            AddBack.Visible = true;
+
+            DeletePlayB.Visible = false;
+
+            PlayIDl.Visible = true;
+
+            PlayIDt.Visible = true;
 
             TitleL.Visible = true;
 
@@ -182,24 +478,61 @@ namespace TicketBookingSystem
 
             TicketQuant.Visible = true;
 
+            AddBack.Visible = true;
+
+            AllPlaysl.Visible = false;
+
+            EditTitleB.Visible = true;
+
+            EditGenreB.Visible = true;
+
+            EditDescripB.Visible = true;
+
+            EditDateB.Visible = true;
+
+            EditTimeB.Visible = true;
+
+            EditTiQuB.Visible = true;
+
+            EditTiAvB.Visible = true;
+
 
 
         }
 
-        private void AddBack_Click(object sender, EventArgs e)
+        private void EditTitleB_Click(object sender, EventArgs e)
         {
-            AddPlay1.Enabled = true;
-            AddPlay1.Visible = true;
+            EditPlayFields("Title");
         }
 
-        private void InputNewPlay_Click(object sender, EventArgs e)
+        private void EditGenreB_Click(object sender, EventArgs e)
         {
-            AddPlay();
+            EditPlayFields("Genre");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void EditDescripB_Click(object sender, EventArgs e)
         {
-            DisplayReview();
+            EditPlayFields("Description");
+        }
+
+        private void EditDateB_Click(object sender, EventArgs e)
+        {
+            EditPlayFields("DateOfPlay");
+        }
+
+        private void EditTimeB_Click(object sender, EventArgs e)
+        {
+            EditPlayFields("TimeOfPlay");
+        }
+
+        private void EditTiAvB_Click(object sender, EventArgs e)
+        {
+            EditPlayFields("TicketsAvailable");
+        }
+
+        private void EditTiQuB_Click(object sender, EventArgs e)
+        {
+            EditPlayFields("TicketsQuantity");
         }
 
 
