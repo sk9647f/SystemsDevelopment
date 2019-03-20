@@ -23,10 +23,15 @@ namespace TicketBookingSystem
         string PhoneNum;
         string Email;
         bool staff;
+        public string connString;
+
 
         public Account()
         {
             InitializeComponent();
+
+
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
         }
 
@@ -44,15 +49,19 @@ namespace TicketBookingSystem
 
 
 
+
+
         }
 
         private void loginButton_Click(object sender, EventArgs e)
         {
             LoginUsername = textBox13.Text;
-            LoginPassword = textBox14.Text;       
+            LoginPassword = textBox14.Text;
 
-            string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+
+
+
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
@@ -61,11 +70,11 @@ namespace TicketBookingSystem
             myCommand.Parameters.AddWithValue("@Username", LoginUsername);
             myCommand.Parameters.AddWithValue("@Password", LoginPassword);
 
-            //myCommand.ExecuteNonQuery();
-           
+
+
             OleDbDataReader re = myCommand.ExecuteReader();
 
-            
+
             if (re.Read() == true)
             {
                 MessageBox.Show("Account found");
@@ -73,11 +82,11 @@ namespace TicketBookingSystem
                 RegisterPanel.Visible = false;
                 StaffAccountPanel.Visible = false;
                 AccountPanel.Visible = true;
-                
+
                 re.Close();
 
                 OleDbCommand staffCommand = new OleDbCommand("SELECT Staff FROM [User] WHERE Username = @Username", myConnection);
-                //staffCommand.Parameters.AddWithValue("@Staff", staff);
+
                 staffCommand.Parameters.AddWithValue("@Username", LoginUsername);
 
                 OleDbDataReader res = staffCommand.ExecuteReader();
@@ -88,25 +97,26 @@ namespace TicketBookingSystem
                     {
                         StaffAccountPanel.Visible = true;
                         AccountPanel.Visible = false;
-                    } 
-                    
-                    
-                   
-                  
+                    }
+
+
+
+
                 }
-               
-                
+
 
                 label11.Text = LoginUsername;
                 textBox13.Text = "";
                 textBox14.Text = "";
 
-                
+
             }
             else
             {
                 MessageBox.Show("Account not found");
             }
+
+
 
             myConnection.Close();
 
@@ -118,6 +128,9 @@ namespace TicketBookingSystem
             LoginPanel.Visible = false;
             StaffAccountPanel.Visible = false;
             AccountPanel.Visible = false;
+            displayInfoPanel.Visible = false;
+
+            buttonSaveDetails.Visible = false;
         }
 
         private void submitButton_Click(object sender, EventArgs e)
@@ -131,13 +144,76 @@ namespace TicketBookingSystem
             Email = textBox7.Text;
 
 
-            Customer customer = new Customer();
-            customer.AddUser(Username, Password, Fname, Sname, Address, PhoneNum, Email);
-            MessageBox.Show("Account Created");          
 
-            label11.Text = LoginUsername;
-            LoginPanel.Visible = true;
-            RegisterPanel.Visible = false;
+
+
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            using (myConnection)
+            {
+                myConnection.Open();
+                OleDbCommand checkcmd = new OleDbCommand("SELECT * FROM [User] WHERE Username = @Username", myConnection);
+                using (myConnection)
+                {
+
+                    checkcmd.Parameters.AddWithValue("@Username", Username);
+
+                    Int32 count = Convert.ToInt32(checkcmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        MessageBox.Show("This username already exists");
+                        LoginPanel.Visible = true;
+                        RegisterPanel.Visible = false;
+                    }
+                    else if
+                        (Username == "")
+                    {
+                        MessageBox.Show("Please enter a valid Username");
+
+                    }
+                    else if (Password == "")
+                    {
+                        MessageBox.Show("Please enter a valid Password");
+
+                    }
+                    else if (Fname == "")
+                    {
+                        MessageBox.Show("Please enter a valid Forname");
+                    }
+                    else if (Sname == "")
+                    {
+                        MessageBox.Show("Please enter a valid Surname");
+                    }
+                    else if (Address == "")
+                    {
+                        MessageBox.Show("Please enter a valid Address");
+                    }
+                    else if (PhoneNum == "")
+                    {
+                        MessageBox.Show("Please enter a valid Phone Number");
+                    }
+                    else if (Email == "" || !Email.Contains("@"))
+                    {
+                        MessageBox.Show("Please enter a valid Email Address");
+                    }
+
+                    else
+                    {
+                        Customer customer = new Customer();
+                        customer.AddUser(Username, Password, Fname, Sname, Address, PhoneNum, Email);
+
+
+                        MessageBox.Show("Account Created");
+                        label11.Text = LoginUsername;
+                        LoginPanel.Visible = true;
+                        RegisterPanel.Visible = false;
+                    }
+                }
+
+
+
+            }
+
 
         }
 
@@ -148,6 +224,7 @@ namespace TicketBookingSystem
             AccountPanel.Visible = false;
             StaffAccountPanel.Visible = false;
             LoginUsername = " ";
+
         }
 
         private void StaffLogoutButton_Click(object sender, EventArgs e)
@@ -164,19 +241,18 @@ namespace TicketBookingSystem
         }
 
         private void deleteAccountButton_Click(object sender, EventArgs e)
-        {          
-
+        {
             var confirmResult = MessageBox.Show("Are you sure to delete your account??",
-                                     "Confirm Delete!!",
-                                     MessageBoxButtons.YesNo);
+                                    "Confirm Delete!!",
+                                    MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
                 Customer customer = new Customer();
                 customer.DeleteUser(LoginUsername);
-                
+
 
                 LoginUsername = " ";
-               
+
 
                 LoginPanel.Visible = true;
                 AccountPanel.Visible = false;
@@ -185,21 +261,64 @@ namespace TicketBookingSystem
             {
                 // If 'No', do something here.
             }
-
-            
-
-            
         }
 
         private void EditPersonalInfoButton_Click(object sender, EventArgs e)
         {
             RegisterPanel.Visible = true;
+            displayInfoPanel.Visible = true;
+            buttonSaveDetails.Visible = false;
+            submitButton.Visible = false;
+
+            displayInfo.Text = " ";
+
+            Customer customer = new Customer();
+            customer.DisplayProfile(LoginUsername);
+            displayInfo.Text = customer.details;
+
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void editDetailsButton_Click(object sender, EventArgs e)
         {
+            displayInfoPanel.Visible = false;
+            AccountPanel.Visible = false;
+            buttonSaveDetails.Visible = true;
+            editDetailsButton.Visible = false;
 
+            Customer customer = new Customer();
+            customer.EditPersonalDetails(LoginUsername);
+
+            textBox1.Text = customer.userName;
+            textBox2.Text = customer.password;
+            textBox3.Text = customer.forName;
+            textBox4.Text = customer.surName;
+            textBox5.Text = customer.address;
+            textBox6.Text = customer.phoneNumber;
+            textBox7.Text = customer.email;
+            
+
+        }
+
+        private void buttonSaveDetails_Click(object sender, EventArgs e)
+        {
+            Username = textBox1.Text;
+            Password = textBox2.Text;
+            Fname = textBox3.Text;
+            Sname = textBox4.Text;
+            Address = textBox5.Text;
+            PhoneNum = textBox6.Text;
+            Email = textBox7.Text;
+
+            Customer customer = new Customer();
+            customer.UpdateDetails(Username, Password, Fname, Sname, Address, PhoneNum, Email, LoginUsername);
+            label11.Text = LoginUsername;
+
+            MessageBox.Show("Details saved");
+
+            RegisterPanel.Visible = false;
+            AccountPanel.Visible = true;
+            
         }
     }
 }

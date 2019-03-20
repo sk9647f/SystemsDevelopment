@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -74,6 +75,12 @@
     <Compile Include="PlaysForm.Designer.cs">
       <DependentUpon>PlaysForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaysView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaysView.Designer.cs">
+      <DependentUpon>PlaysView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reviews.cs" />
@@ -94,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PlaysForm.resx">
       <DependentUpon>PlaysForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaysView.resx">
+      <DependentUpon>PlaysView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

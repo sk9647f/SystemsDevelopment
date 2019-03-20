@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.RegisterPanel = new System.Windows.Forms.Panel();
+            this.editDetailsButton = new System.Windows.Forms.Button();
+            this.displayInfoPanel = new System.Windows.Forms.Panel();
+            this.displayInfo = new System.Windows.Forms.Label();
             this.buttonSaveDetails = new System.Windows.Forms.Button();
             this.submitButton = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -53,7 +56,7 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.AccountPanel = new System.Windows.Forms.Panel();
-            this.deleteAccountButton = new System.Windows.Forms.Button();
+            this.deleteAccountbutton = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.Button();
             this.EditPersonalInfoButton = new System.Windows.Forms.Button();
             this.UserTicketHistoryButton = new System.Windows.Forms.Button();
@@ -68,21 +71,17 @@
             this.AllTicketHistoryButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.RegisterPanel.SuspendLayout();
+            this.displayInfoPanel.SuspendLayout();
             this.LoginPanel.SuspendLayout();
             this.AccountPanel.SuspendLayout();
             this.StaffAccountPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // RegisterPanel
             // 
+            this.RegisterPanel.Controls.Add(this.editDetailsButton);
+            this.RegisterPanel.Controls.Add(this.displayInfoPanel);
             this.RegisterPanel.Controls.Add(this.buttonSaveDetails);
             this.RegisterPanel.Controls.Add(this.submitButton);
             this.RegisterPanel.Controls.Add(this.label9);
@@ -104,6 +103,33 @@
             this.RegisterPanel.Size = new System.Drawing.Size(332, 341);
             this.RegisterPanel.TabIndex = 0;
             // 
+            // editDetailsButton
+            // 
+            this.editDetailsButton.Location = new System.Drawing.Point(194, 293);
+            this.editDetailsButton.Name = "editDetailsButton";
+            this.editDetailsButton.Size = new System.Drawing.Size(75, 23);
+            this.editDetailsButton.TabIndex = 16;
+            this.editDetailsButton.Text = "Edit Details";
+            this.editDetailsButton.UseVisualStyleBackColor = true;
+            this.editDetailsButton.Click += new System.EventHandler(this.editDetailsButton_Click);
+            // 
+            // displayInfoPanel
+            // 
+            this.displayInfoPanel.Controls.Add(this.displayInfo);
+            this.displayInfoPanel.Location = new System.Drawing.Point(169, 9);
+            this.displayInfoPanel.Name = "displayInfoPanel";
+            this.displayInfoPanel.Size = new System.Drawing.Size(146, 270);
+            this.displayInfoPanel.TabIndex = 17;
+            // 
+            // displayInfo
+            // 
+            this.displayInfo.AutoSize = true;
+            this.displayInfo.Location = new System.Drawing.Point(10, 7);
+            this.displayInfo.Name = "displayInfo";
+            this.displayInfo.Size = new System.Drawing.Size(41, 13);
+            this.displayInfo.TabIndex = 16;
+            this.displayInfo.Text = "label14";
+            // 
             // buttonSaveDetails
             // 
             this.buttonSaveDetails.Location = new System.Drawing.Point(215, 293);
@@ -112,6 +138,7 @@
             this.buttonSaveDetails.TabIndex = 16;
             this.buttonSaveDetails.Text = "save changes";
             this.buttonSaveDetails.UseVisualStyleBackColor = true;
+            this.buttonSaveDetails.Click += new System.EventHandler(this.buttonSaveDetails_Click);
             // 
             // submitButton
             // 
@@ -126,7 +153,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(24, 260);
+            this.label9.Location = new System.Drawing.Point(24, 256);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 15;
@@ -299,12 +326,14 @@
             // 
             this.textBox14.Location = new System.Drawing.Point(215, 90);
             this.textBox14.Name = "textBox14";
+            this.textBox14.PasswordChar = '*';
             this.textBox14.Size = new System.Drawing.Size(100, 20);
             this.textBox14.TabIndex = 2;
+            this.textBox14.UseSystemPasswordChar = true;
             // 
             // AccountPanel
             // 
-            this.AccountPanel.Controls.Add(this.deleteAccountButton);
+            this.AccountPanel.Controls.Add(this.deleteAccountbutton);
             this.AccountPanel.Controls.Add(this.logOutButton);
             this.AccountPanel.Controls.Add(this.EditPersonalInfoButton);
             this.AccountPanel.Controls.Add(this.UserTicketHistoryButton);
@@ -315,15 +344,15 @@
             this.AccountPanel.Size = new System.Drawing.Size(305, 258);
             this.AccountPanel.TabIndex = 14;
             // 
-            // deleteAccountButton
+            // deleteAccountbutton
             // 
-            this.deleteAccountButton.Location = new System.Drawing.Point(173, 186);
-            this.deleteAccountButton.Name = "deleteAccountButton";
-            this.deleteAccountButton.Size = new System.Drawing.Size(102, 43);
-            this.deleteAccountButton.TabIndex = 5;
-            this.deleteAccountButton.Text = "Delete Account";
-            this.deleteAccountButton.UseVisualStyleBackColor = true;
-            this.deleteAccountButton.Click += new System.EventHandler(this.deleteAccountButton_Click);
+            this.deleteAccountbutton.Location = new System.Drawing.Point(173, 186);
+            this.deleteAccountbutton.Name = "deleteAccountbutton";
+            this.deleteAccountbutton.Size = new System.Drawing.Size(102, 43);
+            this.deleteAccountbutton.TabIndex = 5;
+            this.deleteAccountbutton.Text = "Delete Account";
+            this.deleteAccountbutton.UseVisualStyleBackColor = true;
+            this.deleteAccountbutton.Click += new System.EventHandler(this.deleteAccountButton_Click);
             // 
             // logOutButton
             // 
@@ -486,70 +515,12 @@
             this.label12.TabIndex = 1;
             this.label12.Text = "Welcome back";
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Location = new System.Drawing.Point(32, 9);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(634, 50);
-            this.panel1.TabIndex = 16;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(513, 14);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(104, 23);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Basket Image";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(391, 14);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Account";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(252, 14);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Offers";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(130, 14);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "What\'s On";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(9, 14);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "Home";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // Account
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1135, 668);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.StaffAccountPanel);
             this.Controls.Add(this.RegisterPanel);
             this.Controls.Add(this.AccountPanel);
@@ -559,13 +530,14 @@
             this.Load += new System.EventHandler(this.Account_Load);
             this.RegisterPanel.ResumeLayout(false);
             this.RegisterPanel.PerformLayout();
+            this.displayInfoPanel.ResumeLayout(false);
+            this.displayInfoPanel.PerformLayout();
             this.LoginPanel.ResumeLayout(false);
             this.LoginPanel.PerformLayout();
             this.AccountPanel.ResumeLayout(false);
             this.AccountPanel.PerformLayout();
             this.StaffAccountPanel.ResumeLayout(false);
             this.StaffAccountPanel.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -610,13 +582,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button StaffLogoutButton;
-        private System.Windows.Forms.Button deleteAccountButton;
+        private System.Windows.Forms.Button deleteAccountbutton;
         private System.Windows.Forms.Button buttonSaveDetails;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Panel displayInfoPanel;
+        private System.Windows.Forms.Label displayInfo;
+        private System.Windows.Forms.Button editDetailsButton;
     }
 }
