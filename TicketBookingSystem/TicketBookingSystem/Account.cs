@@ -49,10 +49,7 @@ namespace TicketBookingSystem
         private void loginButton_Click(object sender, EventArgs e)
         {
             LoginUsername = textBox13.Text;
-            LoginPassword = textBox14.Text;
-            
-
-
+            LoginPassword = textBox14.Text;       
 
             string connString;
             connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
@@ -111,13 +108,6 @@ namespace TicketBookingSystem
                 MessageBox.Show("Account not found");
             }
 
-           
-
-
-
-
-
-
             myConnection.Close();
 
         }
@@ -128,8 +118,6 @@ namespace TicketBookingSystem
             LoginPanel.Visible = false;
             StaffAccountPanel.Visible = false;
             AccountPanel.Visible = false;
-
-
         }
 
         private void submitButton_Click(object sender, EventArgs e)
@@ -145,13 +133,7 @@ namespace TicketBookingSystem
 
             Customer customer = new Customer();
             customer.AddUser(Username, Password, Fname, Sname, Address, PhoneNum, Email);
-            MessageBox.Show("Account Created");
-
-            //string CurrentUsername = "";
-
-
-
-
+            MessageBox.Show("Account Created");          
 
             label11.Text = LoginUsername;
             LoginPanel.Visible = true;
@@ -166,7 +148,6 @@ namespace TicketBookingSystem
             AccountPanel.Visible = false;
             StaffAccountPanel.Visible = false;
             LoginUsername = " ";
-
         }
 
         private void StaffLogoutButton_Click(object sender, EventArgs e)
@@ -182,28 +163,20 @@ namespace TicketBookingSystem
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
-
-            OleDbConnection myConnection = new OleDbConnection(connString);
-
-            // OleDbCommand myCommand = new OleDbCommand("DELETE FROM [User] WHERE Username = @Username", myConnection);
+        private void deleteAccountButton_Click(object sender, EventArgs e)
+        {          
 
             var confirmResult = MessageBox.Show("Are you sure to delete your account??",
                                      "Confirm Delete!!",
                                      MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-
-                OleDbCommand myCommand = new OleDbCommand("DELETE FROM [User] WHERE Username = @Username", myConnection);
-                myCommand.Parameters.AddWithValue("@Username", LoginUsername);
+                Customer customer = new Customer();
+                customer.DeleteUser(LoginUsername);
+                
 
                 LoginUsername = " ";
-                myConnection.Open();
-                myCommand.ExecuteNonQuery();
-                myConnection.Close();
+               
 
                 LoginPanel.Visible = true;
                 AccountPanel.Visible = false;
@@ -213,19 +186,19 @@ namespace TicketBookingSystem
                 // If 'No', do something here.
             }
 
-            //myCommand.Parameters.AddWithValue("@Username", LoginUsername);
+            
 
-            //LoginUsername = " ";
-
-
-            //myConnection.Open();
-            // myCommand.ExecuteNonQuery();
-            // myConnection.Close();
+            
         }
 
         private void EditPersonalInfoButton_Click(object sender, EventArgs e)
         {
             RegisterPanel.Visible = true;
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
 
         }
     }
