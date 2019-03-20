@@ -18,10 +18,11 @@ namespace TicketBookingSystem
         {
             
             InitializeComponent();
+            comboBox1.Items.Clear();
             DisplayPlays();
         }
     
-    
+       
         int playID;
         string oldTitle;
         string title;
@@ -47,7 +48,7 @@ namespace TicketBookingSystem
 
 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             OleDbCommand myCommand = new OleDbCommand("INSERT INTO Plays (Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketsQuantity) VALUES (?,?,?,?,?,?,?)", myConnection);
@@ -71,7 +72,7 @@ namespace TicketBookingSystem
         {
             string InputField = Input;
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             
@@ -142,7 +143,7 @@ namespace TicketBookingSystem
 
 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
 
@@ -161,7 +162,7 @@ namespace TicketBookingSystem
             string input = Genret.Text;
             string returnReview = "";
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
 
             OleDbConnection myConnection = new OleDbConnection(connString);
@@ -193,71 +194,32 @@ namespace TicketBookingSystem
             string initialreturn ="";
             string addString = "";
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
 
-            
-                
-           OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE PlayID = 0", myConnection);
-             
-           OleDbDataReader reader = myCommand.ExecuteReader();
-           while (reader.Read())
-           {
-                initialreturn = reader.GetString(0);
-                addString += "Title: " + initialreturn + "  ";
-                initialreturn = reader.GetString(1);
-                addString += "Date: " + initialreturn + "  ";
-                initialreturn = reader.GetString(2);
-                addString += "Time: " + initialreturn + "\n";
-                addString += "\n";
-                addString += "\n";
-
-
-            }
-            reader.Close();
-           
-           
-
-            OleDbCommand myCommand2 = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE PlayID = 1", myConnection);
-
-            OleDbDataReader reader2 = myCommand2.ExecuteReader();
-            while (reader2.Read())
+            for (int i = 0; i < 5; i++)
             {
-                initialreturn = reader2.GetString(0);
-                addString += "Title: " + initialreturn + "  ";
-                initialreturn = reader2.GetString(1);
-                addString += "Date: " + initialreturn + "  ";
-                initialreturn = reader2.GetString(2);
-                addString += "Time: " + initialreturn + "\n";
-                addString += "\n";
-                addString += "\n";
+                OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE PlayID = @Input", myConnection);
+                myCommand.Parameters.AddWithValue("@Input", i);
+                OleDbDataReader reader = myCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    initialreturn = reader.GetString(0);
+                    
+                    addString += "Title: " + initialreturn + "  ";
+                    initialreturn = reader.GetString(1);
+                    addString += "Date: " + initialreturn + "  ";
+                    initialreturn = reader.GetString(2);
+                    addString += "Time: " + initialreturn + "\n";
+                    addString += "\n";
+                    addString += "\n";
+
+
+                }
             }
-            
-            
-
-            OleDbCommand myCommand3 = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE PlayID = 2", myConnection);
-
-            OleDbDataReader reader3 = myCommand3.ExecuteReader();
-            while (reader3.Read())
-            {
-                initialreturn = reader3.GetString(0);
-                addString += "Title: " + initialreturn + "  ";
-                initialreturn = reader3.GetString(1);
-                addString += "Date: " + initialreturn + "  ";
-                initialreturn = reader3.GetString(2);
-                addString += "Time: " + initialreturn + "\n";
-                addString += "\n";
-                addString += "\n";
-
-            }
-            reader.Close();
-            
-
-
-    
 
             myConnection.Close();
             
@@ -268,8 +230,54 @@ namespace TicketBookingSystem
             
         }
 
+        public void SearchPlays()
+        {
+            string returnAllPlays = "";
+            string initialreturn = "";
+            string addString = "";
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+
+            for (int i = 0; i < 1; i++)
+            {
+                OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE DateofPlay = @Input", myConnection);
+                myCommand.Parameters.AddWithValue("@Input", dateTimePicker2.Value.ToString("dd/MM/yyyy"));
+                OleDbDataReader reader = myCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    initialreturn = reader.GetString(0);
+                    comboBox1.Items.Add(initialreturn);
+                    addString += "Title: " + initialreturn + "  ";
+                    initialreturn = reader.GetString(1);
+                    addString += "Date: " + initialreturn + "  ";
+                    initialreturn = reader.GetString(2);
+                    addString += "Time: " + initialreturn + "\n";
+                    addString += "\n";
+                    addString += "\n";
+
+
+                }
+            }
+
+            myConnection.Close();
+
+            returnAllPlays = addString;
+
+            AllPlaysl.Text = returnAllPlays;
+
+
+        }
+
         private void AddPlay1_Click(object sender, EventArgs e)
         {
+            dateTimePicker2.Visible = false;
+
+            SearchDateB.Visible = false;
+
             EditPlayB.Visible = false;
 
             AddPlay1.Visible = false;
@@ -320,6 +328,16 @@ namespace TicketBookingSystem
 
         private void AddBack_Click(object sender, EventArgs e)
         {
+            DisplayPlays();
+
+            BookTickB.Visible = false;
+
+            comboBox1.Visible = false;
+
+            dateTimePicker2.Visible = true;
+
+            SearchDateB.Visible = true;
+
             EditPlayB.Visible = true;
 
             AddPlay1.Visible = true;
@@ -390,7 +408,22 @@ namespace TicketBookingSystem
 
         private void InputNewPlay_Click(object sender, EventArgs e)
         {
+
             AddPlay();
+
+            Titlet.Text = "";
+
+            Descriptiont.Text = "";
+
+            Genret.Text = "";
+
+            Timet.Text = "";
+
+            Datet.Text = "";
+
+            TicketsAvat.Text = "";
+
+            TicketQuant.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -400,11 +433,16 @@ namespace TicketBookingSystem
 
         private void PlaysForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'ticketSysDBDataSet.Plays' table. You can move, or remove it, as needed.
+            this.playsTableAdapter.Fill(this.ticketSysDBDataSet.Plays);
 
         }
 
         private void DeletePlayB_Click(object sender, EventArgs e)
         {
+            dateTimePicker2.Visible = false;
+
+            SearchDateB.Visible = false;
 
             AddPlay1.Visible = false;
 
@@ -436,6 +474,10 @@ namespace TicketBookingSystem
 
         private void EditPlayB_Click(object sender, EventArgs e)
         {
+            dateTimePicker2.Visible = false;
+
+            SearchDateB.Visible = false;
+
             EditPlayB.Visible = false;
 
             AddPlay1.Visible = false;
@@ -533,6 +575,24 @@ namespace TicketBookingSystem
         private void EditTiQuB_Click(object sender, EventArgs e)
         {
             EditPlayFields("TicketsQuantity");
+        }
+
+        private void SearchDateB_Click(object sender, EventArgs e)
+        {
+            comboBox1.Items.Clear();
+            SearchPlays();
+
+            AddBack.Visible = true;
+
+            DeletePlayB.Visible = false;
+
+            AddPlay1.Visible = false;
+
+            EditPlayB.Visible = false;
+
+            BookTickB.Visible = true;
+
+            comboBox1.Visible = true;
         }
 
 

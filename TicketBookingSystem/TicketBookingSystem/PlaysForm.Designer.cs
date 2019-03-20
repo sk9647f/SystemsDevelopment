@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AddPlay1 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.TitleL = new System.Windows.Forms.Label();
@@ -59,6 +60,18 @@
             this.EditTimeB = new System.Windows.Forms.Button();
             this.EditTiAvB = new System.Windows.Forms.Button();
             this.EditTiQuB = new System.Windows.Forms.Button();
+            this.SearchDateB = new System.Windows.Forms.Button();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.ticketSysDBDataSet = new TicketBookingSystem.TicketSysDBDataSet();
+            this.playsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.playsTableAdapter = new TicketBookingSystem.TicketSysDBDataSetTableAdapters.PlaysTableAdapter();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.playsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.BookTickB = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.ticketSysDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playsBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // AddPlay1
@@ -73,7 +86,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(387, 29);
+            this.button1.Location = new System.Drawing.Point(387, 216);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -364,11 +377,78 @@
             this.EditTiQuB.Visible = false;
             this.EditTiQuB.Click += new System.EventHandler(this.EditTiQuB_Click);
             // 
+            // SearchDateB
+            // 
+            this.SearchDateB.Location = new System.Drawing.Point(387, 58);
+            this.SearchDateB.Name = "SearchDateB";
+            this.SearchDateB.Size = new System.Drawing.Size(75, 23);
+            this.SearchDateB.TabIndex = 32;
+            this.SearchDateB.Text = "Search Date";
+            this.SearchDateB.UseVisualStyleBackColor = true;
+            this.SearchDateB.Click += new System.EventHandler(this.SearchDateB_Click);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 0;
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(262, 18);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.TabIndex = 34;
+            this.dateTimePicker2.Value = new System.DateTime(2019, 3, 20, 0, 0, 0, 0);
+            // 
+            // ticketSysDBDataSet
+            // 
+            this.ticketSysDBDataSet.DataSetName = "TicketSysDBDataSet";
+            this.ticketSysDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // playsBindingSource
+            // 
+            this.playsBindingSource.DataMember = "Plays";
+            this.playsBindingSource.DataSource = this.ticketSysDBDataSet;
+            // 
+            // playsTableAdapter
+            // 
+            this.playsTableAdapter.ClearBeforeFill = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(41, 308);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(184, 21);
+            this.comboBox1.TabIndex = 36;
+            this.comboBox1.Visible = false;
+            // 
+            // playsBindingSource1
+            // 
+            this.playsBindingSource1.DataMember = "Plays";
+            this.playsBindingSource1.DataSource = this.ticketSysDBDataSet;
+            // 
+            // BookTickB
+            // 
+            this.BookTickB.Location = new System.Drawing.Point(231, 306);
+            this.BookTickB.Name = "BookTickB";
+            this.BookTickB.Size = new System.Drawing.Size(75, 23);
+            this.BookTickB.TabIndex = 37;
+            this.BookTickB.Text = "Book Ticket";
+            this.BookTickB.UseVisualStyleBackColor = true;
+            this.BookTickB.Visible = false;
+            // 
             // PlaysForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 365);
+            this.Controls.Add(this.BookTickB);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.SearchDateB);
             this.Controls.Add(this.EditTiQuB);
             this.Controls.Add(this.EditTiAvB);
             this.Controls.Add(this.EditTimeB);
@@ -403,6 +483,9 @@
             this.Name = "PlaysForm";
             this.Text = "Plays";
             this.Load += new System.EventHandler(this.PlaysForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.ticketSysDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playsBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -441,5 +524,14 @@
         private System.Windows.Forms.Button EditTimeB;
         private System.Windows.Forms.Button EditTiAvB;
         private System.Windows.Forms.Button EditTiQuB;
+        private System.Windows.Forms.Button SearchDateB;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private TicketSysDBDataSet ticketSysDBDataSet;
+        private System.Windows.Forms.BindingSource playsBindingSource;
+        private TicketSysDBDataSetTableAdapters.PlaysTableAdapter playsTableAdapter;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.BindingSource playsBindingSource1;
+        private System.Windows.Forms.Button BookTickB;
     }
 }
