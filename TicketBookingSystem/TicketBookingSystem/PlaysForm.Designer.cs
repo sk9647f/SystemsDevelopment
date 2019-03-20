@@ -245,10 +245,11 @@
             // AllPlaysl
             // 
             this.AllPlaysl.AutoSize = true;
+            this.AllPlaysl.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AllPlaysl.Location = new System.Drawing.Point(31, 102);
             this.AllPlaysl.MaximumSize = new System.Drawing.Size(300, 150);
             this.AllPlaysl.Name = "AllPlaysl";
-            this.AllPlaysl.Size = new System.Drawing.Size(28, 13);
+            this.AllPlaysl.Size = new System.Drawing.Size(37, 17);
             this.AllPlaysl.TabIndex = 18;
             this.AllPlaysl.Text = "Test";
             // 

@@ -210,6 +210,7 @@ namespace TicketBookingSystem
                     initialreturn = reader.GetString(0);
                     
                     addString += "Title: " + initialreturn + "  ";
+                    addString += "\n";
                     initialreturn = reader.GetString(1);
                     addString += "Date: " + initialreturn + "  ";
                     initialreturn = reader.GetString(2);
