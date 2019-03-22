@@ -41,6 +41,9 @@
             this.BookTickB = new System.Windows.Forms.Button();
             this.AllPlaysl = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.playTitleTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ticketSysDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playsBindingSource1)).BeginInit();
@@ -69,11 +72,11 @@
             // 
             // SearchDateB
             // 
-            this.SearchDateB.Location = new System.Drawing.Point(387, 58);
+            this.SearchDateB.Location = new System.Drawing.Point(387, 135);
             this.SearchDateB.Name = "SearchDateB";
             this.SearchDateB.Size = new System.Drawing.Size(75, 23);
             this.SearchDateB.TabIndex = 32;
-            this.SearchDateB.Text = "Search Date";
+            this.SearchDateB.Text = "Search";
             this.SearchDateB.UseVisualStyleBackColor = true;
             this.SearchDateB.Click += new System.EventHandler(this.SearchDateB_Click);
             // 
@@ -86,7 +89,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(262, 18);
+            this.dateTimePicker2.Location = new System.Drawing.Point(262, 95);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker2.TabIndex = 34;
@@ -124,11 +127,11 @@
             // AllPlaysl
             // 
             this.AllPlaysl.AutoSize = true;
-            this.AllPlaysl.Location = new System.Drawing.Point(31, 102);
+            this.AllPlaysl.Location = new System.Drawing.Point(38, 95);
             this.AllPlaysl.Name = "AllPlaysl";
-            this.AllPlaysl.Size = new System.Drawing.Size(28, 13);
+            this.AllPlaysl.Size = new System.Drawing.Size(105, 13);
             this.AllPlaysl.TabIndex = 18;
-            this.AllPlaysl.Text = "Test";
+            this.AllPlaysl.Text = "Please Select a date";
             // 
             // comboBox1
             // 
@@ -139,11 +142,39 @@
             this.comboBox1.TabIndex = 36;
             this.comboBox1.Visible = false;
             // 
+            // playTitleTextBox
+            // 
+            this.playTitleTextBox.Location = new System.Drawing.Point(262, 32);
+            this.playTitleTextBox.Name = "playTitleTextBox";
+            this.playTitleTextBox.Size = new System.Drawing.Size(200, 20);
+            this.playTitleTextBox.TabIndex = 38;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(278, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Enter Play Title ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(278, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "Enter Play Date ";
+            // 
             // PlaysForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 365);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.playTitleTextBox);
             this.Controls.Add(this.BookTickB);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dateTimePicker2);
@@ -175,5 +206,8 @@
         private System.Windows.Forms.Button BookTickB;
         private System.Windows.Forms.Label AllPlaysl;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox playTitleTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

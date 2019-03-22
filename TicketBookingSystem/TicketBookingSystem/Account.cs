@@ -254,6 +254,7 @@ namespace TicketBookingSystem
         {
             StaffAccountPanel.Visible = false;
             PlaysPanel.Visible = true;
+            savePlayDetailsbutton.Visible = false;
         }
 
         private void deleteAccountButton_Click(object sender, EventArgs e)
@@ -358,6 +359,17 @@ namespace TicketBookingSystem
 
             PlaysPanel.Visible = false;
             StaffAccountPanel.Visible = true;
+
+            textBox8.Clear();
+            textBox9.Clear();
+            textBox10.Clear();
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+            textBox11.Clear();
+            textBox12.Clear();
+
+
+
         }
 
         

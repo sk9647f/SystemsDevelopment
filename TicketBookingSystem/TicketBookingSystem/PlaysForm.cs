@@ -34,10 +34,21 @@ namespace TicketBookingSystem
         //have to use datetime function to switch from a string into a formatted datetime
         string ticketsAvailable;
         string ticketsQuantity;
+        
 
         public void SearchPlays()
         {
-            string returnAllPlays = "";
+            DateTime dateInput = dateTimePicker2.Value;
+            string titleInput = playTitleTextBox.Text;
+            Play plays = new Play();
+            plays.SearchPlays(titleInput, dateInput);
+
+
+
+            comboBox1.DataSource = plays.comboValue;
+            
+
+            /*string returnAllPlays = "";
             string initialreturn = "";
             string addString = "";
             string connString;
@@ -57,9 +68,9 @@ namespace TicketBookingSystem
                     initialreturn = reader.GetString(0);
                     comboBox1.Items.Add(initialreturn);
                     addString += "Title: " + initialreturn + "  ";
-                    initialreturn = reader.GetString(1);
+                    initialreturn = reader.GetDateTime(1).ToShortDateString();
                     addString += "Date: " + initialreturn + "  ";
-                    initialreturn = reader.GetString(2);
+                    initialreturn = reader.GetDateTime(2).ToShortTimeString();
                     addString += "Time: " + initialreturn + "\n";
                     addString += "\n";
                     addString += "\n";
@@ -73,7 +84,7 @@ namespace TicketBookingSystem
             returnAllPlays = addString;
 
             AllPlaysl.Text = returnAllPlays;
-
+            */
 
         }
 
@@ -125,7 +136,7 @@ namespace TicketBookingSystem
 
         private void SearchDateB_Click(object sender, EventArgs e)
         {
-            comboBox1.Items.Clear();
+            //comboBox1.Items.Clear();
             SearchPlays();
 
             AddBack.Visible = true;
@@ -141,9 +152,11 @@ namespace TicketBookingSystem
         {
 
             BasketForm basketForm = new BasketForm();
+            basketForm.ShowDialog();
+
             basketForm.setValues(comboBox1.Text, dateTimePicker2.Text);
 
-            basketForm.ShowDialog();
+            
         }
 
 

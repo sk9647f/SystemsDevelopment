@@ -9,14 +9,17 @@ public class Play
 
 {
     int playID;
-    string title;
+    public string title;
     string genre;
     string description; // include duration of play
     string date;
-    string time;
+    public string time;
     //have to use datetime function to switch from a string into a formatted datetime
     string ticketsAvailable;
     string ticketsQuantity;
+    public List <string> comboValue = new List<string>();
+    //string[] array;
+
 
     // Might not need any full class variables if arguments are given in by the main. As this class doesn't create any objects with these varialbes, only pushes them between the code and database.
 
@@ -26,7 +29,7 @@ public class Play
 
 
 
-   
+
     public string DisplayReview()
     {
 
@@ -68,27 +71,25 @@ public class Play
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
 
-        for (int i = 0; i < 50; i++)
+
+        OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays", myConnection);
+
+        OleDbDataReader reader = myCommand.ExecuteReader();
+        while (reader.Read())
         {
-            OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays", myConnection);
+            initialreturn = reader.GetString(0);
 
-            OleDbDataReader reader = myCommand.ExecuteReader();
-            while (reader.Read())
-            {
-                initialreturn = reader.GetString(0);
-
-                addString += "Title: " + initialreturn + "  ";
-                addString += "\n";
-                initialreturn = reader.GetString(1);
-                addString += "Date: " + initialreturn + "  ";
-                initialreturn = reader.GetString(2);
-                addString += "Time: " + initialreturn + "\n";
-                addString += "\n";
-                addString += "\n";
+            addString += "Title: " + initialreturn + "  ";
+            initialreturn = reader.GetDateTime(1).ToShortDateString();
+            addString += "Date: " + initialreturn + "  ";
+            initialreturn = reader.GetDateTime(2).ToShortTimeString();
+            addString += "Time: " + initialreturn + "\n";
+            addString += "\n";
+            addString += "\n";
 
 
-            }
         }
+
 
         myConnection.Close();
 
@@ -99,41 +100,42 @@ public class Play
 
     }
 
-    /*public static SearchPlays()
+    public void SearchPlays(string titleInput, DateTime dateInput)
     {
-        string returnAllPlays = "";
-        string initialreturn = "";
-        string addString = "";
+
         string connString;
-        List<string> forCombo;
-        string[] Strings = new string[64];
-        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\Code\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
-        for (int i = 0; i < 1; i++)
+
+
+        OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE Title = @InputTitle AND DateofPlay = @InputDate", myConnection);
+        myCommand.Parameters.AddWithValue("@InputTitle", titleInput);
+        myCommand.Parameters.AddWithValue("@InputDate", dateInput);
+        OleDbDataReader reader = myCommand.ExecuteReader();
+        while (reader.Read())
         {
-            OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE DateofPlay = @Input", myConnection);
-            myCommand.Parameters.AddWithValue("@Input", dateTimePicker2.Value.ToString("dd/MM/yyyy"));
-            OleDbDataReader reader = myCommand.ExecuteReader();
-            while (reader.Read())
-            {
-                initialreturn = reader.GetString(0);
-                Strings[i] = initialreturn;
-                forCombo.Items.Add(initialreturn);
-                addString += "Title: " + initialreturn + "  ";
-                initialreturn = reader.GetString(1);
-                addString += "Date: " + initialreturn + "  ";
-                initialreturn = reader.GetString(2);
-                addString += "Time: " + initialreturn + "\n";
-                addString += "\n";
-                addString += "\n";
-            }
+
+
+
+            title = reader.GetString(0);
+            time = reader.GetDateTime(2).ToShortTimeString();
+
+
+            
+            comboValue.Add(title + "" + time);
+
+
+
+
         }
+
+
         myConnection.Close();
-        returnAllPlays = addString;
-        AllPlaysl.Text = returnAllPlays;
-        return Strings;
-    }*/
+
+
+    }
 
 
     //Using both the title and its date as an identifier 
