@@ -13,7 +13,7 @@ namespace TicketBookingSystem
 {
     public partial class Account : Form
     {
-        string LoginUsername;
+        public static string LoginUsername;
         string LoginPassword;
         string Username;
         string Password;
@@ -22,7 +22,19 @@ namespace TicketBookingSystem
         string Address;
         string PhoneNum;
         string Email;
-        bool staff;
+        bool staffAccount;
+
+        string Title;
+        string Genre;
+        string Description;
+        DateTime DateOfPlay;
+        DateTime TimeOfPlay;
+        int TicketsAvailable;
+        int TicketQuantity;
+        string TitleS;
+        DateTime DateOfPlayS;
+        DateTime TimeOfPlayS;
+
         public string connString;
 
 
@@ -46,8 +58,9 @@ namespace TicketBookingSystem
             RegisterPanel.Visible = false;
             AccountPanel.Visible = false;
             StaffAccountPanel.Visible = false;
-
-
+            PlaysPanel.Visible = false;
+            deletePlayPanel.Visible = false;
+            
 
 
 
@@ -92,8 +105,8 @@ namespace TicketBookingSystem
                 OleDbDataReader res = staffCommand.ExecuteReader();
                 while (res.Read())
                 {
-                    staff = Convert.ToBoolean(res["Staff"]);
-                    if (staff)
+                    staffAccount = Convert.ToBoolean(res["Staff"]);
+                    if (staffAccount)
                     {
                         StaffAccountPanel.Visible = true;
                         AccountPanel.Visible = false;
@@ -106,6 +119,7 @@ namespace TicketBookingSystem
 
 
                 label11.Text = LoginUsername;
+                label13.Text = LoginUsername;
                 textBox13.Text = "";
                 textBox14.Text = "";
 
@@ -129,6 +143,7 @@ namespace TicketBookingSystem
             StaffAccountPanel.Visible = false;
             AccountPanel.Visible = false;
             displayInfoPanel.Visible = false;
+            editDetailsButton.Visible = false;
 
             buttonSaveDetails.Visible = false;
         }
@@ -237,7 +252,8 @@ namespace TicketBookingSystem
 
         private void AddPlayButton_Click(object sender, EventArgs e)
         {
-
+            StaffAccountPanel.Visible = false;
+            PlaysPanel.Visible = true;
         }
 
         private void deleteAccountButton_Click(object sender, EventArgs e)
@@ -312,6 +328,7 @@ namespace TicketBookingSystem
 
             Customer customer = new Customer();
             customer.UpdateDetails(Username, Password, Fname, Sname, Address, PhoneNum, Email, LoginUsername);
+            LoginUsername = Username;
             label11.Text = LoginUsername;
 
             MessageBox.Show("Details saved");
@@ -319,6 +336,181 @@ namespace TicketBookingSystem
             RegisterPanel.Visible = false;
             AccountPanel.Visible = true;
             
+        }
+
+        private void submitPlayButton_Click(object sender, EventArgs e)
+        {
+
+            Title = textBox8.Text;
+            Genre = textBox9.Text;
+            Description = textBox10.Text;
+            DateOfPlay = dateTimePicker1.Value;
+            TimeOfPlay = dateTimePicker2.Value;
+            TicketsAvailable = Convert.ToInt32(textBox11.Text);
+            TicketQuantity = Convert.ToInt32(textBox12.Text);
+
+
+
+            Staff staff = new Staff();
+            staff.AddPlay(Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketQuantity);
+
+            MessageBox.Show("Play Added To System");
+
+            PlaysPanel.Visible = false;
+            StaffAccountPanel.Visible = true;
+        }
+
+        
+
+        private void deletePlaySubmitButton_Click(object sender, EventArgs e)
+        {
+            Title = textBox15.Text;
+            DateOfPlay = dateTimePicker3.Value;
+            TimeOfPlay = dateTimePicker4.Value;
+
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+            OleDbCommand myCommand = new OleDbCommand("SELECT * FROM Plays WHERE Title = @Title AND DateOfPlay = @DateOfPlay AND TimeOfPlay = @TimeOfPlay", myConnection);
+
+            myCommand.Parameters.AddWithValue("@Title", Title);
+            myCommand.Parameters.AddWithValue("@DateOfPlay", DateOfPlay);
+            myCommand.Parameters.AddWithValue("@TimeOfPlay", TimeOfPlay);
+
+
+            OleDbDataReader re = myCommand.ExecuteReader();
+
+
+            if (re.Read() == true)
+            {
+
+                var confirmResult = MessageBox.Show("Are you sure to delete this play? " + "\n" + Title + " " + DateOfPlay.ToShortDateString() + " " + TimeOfPlay.ToShortTimeString(), "Confirm Delete?",
+                                               MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+
+                    Staff staff = new Staff();
+                    staff.DeletePlay(Title, DateOfPlay, TimeOfPlay);
+
+                    deletePlayPanel.Visible = false;
+                    StaffAccountPanel.Visible = true;
+
+                }
+                else
+                {
+                    // If 'No', do something here.
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Play not found");
+            }
+        }
+
+        private void EditPlayButton_Click(object sender, EventArgs e)
+        {
+            StaffAccountPanel.Visible = false;
+            deletePlaySubmitButton.Visible = true;
+            deletePlayPanel.Visible = true;
+            searchPlayEditbutton.Visible = true;
+
+        }
+
+        private void searchPlayEditbutton_Click(object sender, EventArgs e)
+        {
+
+            
+
+            Title = textBox15.Text;
+            DateOfPlay = dateTimePicker3.Value;
+            TimeOfPlay = dateTimePicker4.Value;
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+            OleDbCommand myCommand = new OleDbCommand("SELECT * FROM Plays WHERE Title = @Title AND DateOfPlay = @DateOfPlay AND TimeOfPlay = @TimeOfPlay", myConnection);
+
+            myCommand.Parameters.AddWithValue("@Title", Title);
+            myCommand.Parameters.AddWithValue("@DateOfPlay", DateOfPlay);
+            myCommand.Parameters.AddWithValue("@TimeOfPlay", TimeOfPlay);
+
+
+            OleDbDataReader re = myCommand.ExecuteReader();
+
+
+            if (re.Read() == true)
+            {
+
+                deletePlayPanel.Visible = false;
+                PlaysPanel.Visible = true;
+                submitPlayButton.Visible = false;
+                savePlayDetailsbutton.Visible = true;
+
+                TitleS = textBox15.Text;
+                DateOfPlayS = dateTimePicker3.Value;
+                TimeOfPlayS = dateTimePicker4.Value;
+
+                Staff staff = new Staff();
+                staff.EditPlay(Title, DateOfPlay, TimeOfPlay);
+
+
+                textBox8.Text = staff.titleE;
+                textBox9.Text = staff.genreE;
+                textBox10.Text = staff.descriptionE;
+                dateTimePicker1.Value = staff.dateOfPlayE;
+                dateTimePicker2.Value = staff.timeOfPlayE;
+                textBox11.Text = staff.ticketsAvailableE.ToString();
+                textBox12.Text = staff.ticketQuantityE.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Play not found");
+            }
+
+
+        }
+
+        private void savePlayDetailsbutton_Click(object sender, EventArgs e)
+        {
+            Title = textBox8.Text;
+            Genre = textBox9.Text;
+            Description = textBox10.Text;
+            DateOfPlay = dateTimePicker1.Value;
+            TimeOfPlay = dateTimePicker2.Value;
+            TicketsAvailable = Convert.ToInt32(textBox11.Text);
+            TicketQuantity = Convert.ToInt32(textBox12.Text);
+
+            Staff staff = new Staff();
+            staff.UpdatePlay(Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketQuantity, TitleS, DateOfPlayS, TimeOfPlayS);
+
+            MessageBox.Show("Play Details saved");
+
+            PlaysPanel.Visible = false;
+            StaffAccountPanel.Visible = true;
+        }
+
+        private void RegisterBackbutton_Click(object sender, EventArgs e)
+        {
+            RegisterPanel.Visible = false;
+            AccountPanel.Visible = true;
+        }
+
+        private void deletePlayBackbutton_Click(object sender, EventArgs e)
+        {
+            deletePlayPanel.Visible = false;
+            StaffAccountPanel.Visible = true;
+        }
+
+        private void playsBackbutton_Click(object sender, EventArgs e)
+        {
+            PlaysPanel.Visible = false;
+            StaffAccountPanel.Visible = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
         }
     }
 }

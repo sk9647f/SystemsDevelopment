@@ -12,10 +12,28 @@ namespace TicketBookingSystem
 {
     public partial class Form1 : Form
     {
+        public string user;
         public Form1()
         {
             InitializeComponent();
+
+            user = Account.LoginUsername;
+
+            if (user != "Guest" && user == "")
+            {
+                Userlabel.Text = user;
+            }
+            else
+            {
+                Userlabel.Text = "Guest";
+            }
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+           
+        }
+
 
         private void button4_Click(object sender, EventArgs e)
         {

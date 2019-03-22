@@ -22,11 +22,19 @@ namespace TicketBookingSystem
         public string loginUsername;
         public string loginPassword;
         public string details;
+        public string titleE;
+        public string genreE;
+        public string descriptionE;
+        public DateTime dateOfPlayE;
+        public DateTime timeOfPlayE;
+        public int ticketsAvailableE;
+        public int ticketQuantityE;
 
 
 
 
-        
+
+
         public abstract void AddUser(string user, string pass, string forname, string surname, string address, string phoneNumber, string email);
         public abstract void DeleteUser(string user);
         public abstract void DisplayProfile(string user);
@@ -54,14 +62,14 @@ namespace TicketBookingSystem
 
             OleDbConnection myConnection = new OleDbConnection(connString);
 
-            OleDbCommand myCommand = new OleDbCommand("INSERT INTO [User] (Forename, Surname, Username, [Password], PhoneNumber, Address, Email) VALUES (?, ?, ?, ?, ?, ?, ?)", myConnection);
+            OleDbCommand myCommand = new OleDbCommand("INSERT INTO [User] (Username, [Password], Forename, Surname, Address, PhoneNumber, Email) VALUES (?, ?, ?, ?, ?, ?, ?)", myConnection);
 
-            myCommand.Parameters.AddWithValue("@Forname", forname);
-            myCommand.Parameters.AddWithValue("@Surname", surname);
             myCommand.Parameters.AddWithValue("@Username", user);
             myCommand.Parameters.AddWithValue("@Password", pass);
-            myCommand.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+            myCommand.Parameters.AddWithValue("@Forname", forname);
+            myCommand.Parameters.AddWithValue("@Surname", surname);
             myCommand.Parameters.AddWithValue("@Address", address);
+            myCommand.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
             myCommand.Parameters.AddWithValue("@Email", email);
 
             myConnection.Open();
@@ -137,12 +145,12 @@ namespace TicketBookingSystem
 
             while (reader.Read())
             {
-                userName = reader.GetString(3);
-                password = reader.GetString(4);
-                forName = reader.GetString(1);
-                surName = reader.GetString(2);
-                address = reader.GetString(6);
-                phoneNumber = reader.GetString(5);
+                userName = reader.GetString(1);
+                password = reader.GetString(2);
+                forName = reader.GetString(3);
+                surName = reader.GetString(4);
+                address = reader.GetString(5);
+                phoneNumber = reader.GetString(6);
                 email = reader.GetString(7);
             }
         }
@@ -153,14 +161,14 @@ namespace TicketBookingSystem
             connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
 
-            OleDbCommand myCommand = new OleDbCommand("UPDATE [User] SET Forename = @Forname, Surname = @Surname, Username = @Username, [Password] = @Password, PhoneNumber = @PhoneNumber, Address = @Address, Email = @Email WHERE Username = @LoginUsername", myConnection);
+            OleDbCommand myCommand = new OleDbCommand("UPDATE [User] SET Username = @Username, [Password] = @Password, Forename = @Forname, Surname = @Surname, Address = @Address, PhoneNumber = @PhoneNumber, Email = @Email WHERE Username = @LoginUsername", myConnection);
 
-            myCommand.Parameters.AddWithValue("@Forname", forname);
-            myCommand.Parameters.AddWithValue("@Surname", surname);
             myCommand.Parameters.AddWithValue("@Username", user);
             myCommand.Parameters.AddWithValue("@Password", pass);
-            myCommand.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+            myCommand.Parameters.AddWithValue("@Forname", forname);
+            myCommand.Parameters.AddWithValue("@Surname", surname);
             myCommand.Parameters.AddWithValue("@Address", address);
+            myCommand.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
             myCommand.Parameters.AddWithValue("@Email", email);
             myCommand.Parameters.AddWithValue("@LoginUsername", loginUsername);
 
@@ -180,17 +188,17 @@ namespace TicketBookingSystem
 
         public override void AddUser(string user, string pass, string forname, string surname, string address, string phoneNumber, string email)
         {
-            //id = staffID;
+            //
         }
 
         public override void DeleteUser(string user)
         {
-
+            //
         }
 
         public override void DisplayProfile(string user)
         {
-
+            //
         }
 
 
@@ -199,20 +207,93 @@ namespace TicketBookingSystem
 
         }
 
-        public void AddPlay()
+        public void AddPlay(string title, string genre, string description, DateTime dateOfPlay, DateTime timeOfPlay, int ticketsAvailable, int ticketQuantity)
         {
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+            OleDbCommand myCommand = new OleDbCommand("INSERT INTO Plays (Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketsQuantity) VALUES (?,?,?,?,?,?,?)", myConnection);
+       
+            myCommand.Parameters.AddWithValue("@Title", title);
+            myCommand.Parameters.AddWithValue("@Genre", genre);
+            myCommand.Parameters.AddWithValue("@Description", description);
+            myCommand.Parameters.AddWithValue("@DateOfPlay", dateOfPlay);
+            myCommand.Parameters.AddWithValue("@TimeOfPlay", timeOfPlay);
+            myCommand.Parameters.AddWithValue("@TicketsAvailable", ticketsAvailable);
+            myCommand.Parameters.AddWithValue("@TicketsQuantity", ticketQuantity);
+
+            myCommand.ExecuteNonQuery();
+            myConnection.Close();
+        }
+
+        public void EditPlay(string title, DateTime dateOfPlay, DateTime timeOfPlay)
+        {
+
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+            OleDbCommand myCommand = new OleDbCommand("SELECT * FROM Plays WHERE Title = @Title AND DateOfPlay = @DateOfPlay AND TimeOfPlay = @TimeOfPlay", myConnection);
+            myCommand.Parameters.AddWithValue("@Title", title);
+            myCommand.Parameters.AddWithValue("@DateOfPlay", dateOfPlay);
+            myCommand.Parameters.AddWithValue("@TimeOfPlay", timeOfPlay);
+            OleDbDataReader reader = myCommand.ExecuteReader();
+
+            while (reader.Read())
+            {
+                titleE = reader.GetString(1);
+                genreE = reader.GetString(2);
+                descriptionE = reader.GetString(3);
+                dateOfPlayE = reader.GetDateTime(4);
+                timeOfPlayE = reader.GetDateTime(5);
+                ticketsAvailableE = reader.GetInt32(6);
+                ticketQuantityE = reader.GetInt32(7);
+            }
+
 
         }
 
-        public void EditPlay()
-        {
 
+        public void UpdatePlay(string title, string genre, string description, DateTime dateOfPlay, DateTime timeOfPlay, int ticketsAvailable, int ticketQuantity, string titleS, DateTime dateOfPlayS, DateTime timeOfPlayS)
+        {
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+            OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET Title = @Title, Genre = @Genre, Description = @Description, DateOfPlay = @DateOfPlay, TimeOfPlay = @TimeOfPlay, TicketsAvailable = @TicketsAvailable, TicketsQuantity = @TicketsQuantity WHERE Title = @TitleS AND DateOfPlay = @DateOfPlayS AND TimeOfPlay = @TimeOfPlayS", myConnection);
+
+            myCommand.Parameters.AddWithValue("@Title", title);
+            myCommand.Parameters.AddWithValue("@Genre", genre);
+            myCommand.Parameters.AddWithValue("@Description", description);
+            myCommand.Parameters.AddWithValue("@DateOfPlay", dateOfPlay);
+            myCommand.Parameters.AddWithValue("@TimeOfPlay", timeOfPlay);
+            myCommand.Parameters.AddWithValue("@TicketsAvailable", ticketsAvailable);
+            myCommand.Parameters.AddWithValue("@TicketsQuantity", ticketQuantity);
+            myCommand.Parameters.AddWithValue("@TitleS", titleS);
+            myCommand.Parameters.AddWithValue("@DateOfPlayS", dateOfPlayS);
+            myCommand.Parameters.AddWithValue("@TimeOfPlayS", timeOfPlayS);
+
+            myCommand.ExecuteNonQuery();
+            myConnection.Close();
         }
 
-        public void DeletePlay()
+        public void DeletePlay(string title, DateTime dateOfPlay, DateTime timeOfPlay)
         {
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            OleDbCommand myCommand = new OleDbCommand("DELETE FROM Plays WHERE Title = @Title AND DateOfPlay = @DateOfPlay AND TimeOfPlay = @TimeOfPlay", myConnection);
+            myCommand.Parameters.AddWithValue("@Title", title);
+            myCommand.Parameters.AddWithValue("@DateOfPlay", dateOfPlay);
+            myCommand.Parameters.AddWithValue("@TimeOfPlay", timeOfPlay);
+
+            myConnection.Open();
+            myCommand.ExecuteNonQuery();
+            myConnection.Close();
         }
+    
 
         public override void EditPersonalDetails(string user)
         {

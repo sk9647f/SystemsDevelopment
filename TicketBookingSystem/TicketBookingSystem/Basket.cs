@@ -28,7 +28,7 @@ namespace TicketBookingSystem
 
             //needs to write to database 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
 

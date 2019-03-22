@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.RegisterPanel = new System.Windows.Forms.Panel();
+            this.RegisterBackbutton = new System.Windows.Forms.Button();
             this.editDetailsButton = new System.Windows.Forms.Button();
             this.displayInfoPanel = new System.Windows.Forms.Panel();
             this.displayInfo = new System.Windows.Forms.Label();
@@ -59,27 +60,58 @@
             this.deleteAccountbutton = new System.Windows.Forms.Button();
             this.logOutButton = new System.Windows.Forms.Button();
             this.EditPersonalInfoButton = new System.Windows.Forms.Button();
-            this.UserTicketHistoryButton = new System.Windows.Forms.Button();
+            this.customerOrderHistoryButton = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.StaffAccountPanel = new System.Windows.Forms.Panel();
             this.StaffLogoutButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.RemovePlayButton = new System.Windows.Forms.Button();
             this.EditPlayButton = new System.Windows.Forms.Button();
             this.AddPlayButton = new System.Windows.Forms.Button();
-            this.AllTicketHistoryButton = new System.Windows.Forms.Button();
+            this.newStaffAccountButton = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.PlaysPanel = new System.Windows.Forms.Panel();
+            this.playsBackbutton = new System.Windows.Forms.Button();
+            this.savePlayDetailsbutton = new System.Windows.Forms.Button();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.submitPlayButton = new System.Windows.Forms.Button();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.deletePlayPanel = new System.Windows.Forms.Panel();
+            this.deletePlayBackbutton = new System.Windows.Forms.Button();
+            this.searchPlayEditbutton = new System.Windows.Forms.Button();
+            this.deletePlaySubmitButton = new System.Windows.Forms.Button();
+            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
+            this.label23 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.RegisterPanel.SuspendLayout();
             this.displayInfoPanel.SuspendLayout();
             this.LoginPanel.SuspendLayout();
             this.AccountPanel.SuspendLayout();
             this.StaffAccountPanel.SuspendLayout();
+            this.PlaysPanel.SuspendLayout();
+            this.deletePlayPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // RegisterPanel
             // 
+            this.RegisterPanel.Controls.Add(this.RegisterBackbutton);
             this.RegisterPanel.Controls.Add(this.editDetailsButton);
             this.RegisterPanel.Controls.Add(this.displayInfoPanel);
             this.RegisterPanel.Controls.Add(this.buttonSaveDetails);
@@ -102,6 +134,16 @@
             this.RegisterPanel.Name = "RegisterPanel";
             this.RegisterPanel.Size = new System.Drawing.Size(332, 341);
             this.RegisterPanel.TabIndex = 0;
+            // 
+            // RegisterBackbutton
+            // 
+            this.RegisterBackbutton.Location = new System.Drawing.Point(3, 313);
+            this.RegisterBackbutton.Name = "RegisterBackbutton";
+            this.RegisterBackbutton.Size = new System.Drawing.Size(86, 23);
+            this.RegisterBackbutton.TabIndex = 18;
+            this.RegisterBackbutton.Text = "Back To Menu";
+            this.RegisterBackbutton.UseVisualStyleBackColor = true;
+            this.RegisterBackbutton.Click += new System.EventHandler(this.RegisterBackbutton_Click);
             // 
             // editDetailsButton
             // 
@@ -336,7 +378,7 @@
             this.AccountPanel.Controls.Add(this.deleteAccountbutton);
             this.AccountPanel.Controls.Add(this.logOutButton);
             this.AccountPanel.Controls.Add(this.EditPersonalInfoButton);
-            this.AccountPanel.Controls.Add(this.UserTicketHistoryButton);
+            this.AccountPanel.Controls.Add(this.customerOrderHistoryButton);
             this.AccountPanel.Controls.Add(this.label11);
             this.AccountPanel.Controls.Add(this.label10);
             this.AccountPanel.Location = new System.Drawing.Point(704, 12);
@@ -368,7 +410,7 @@
             // 
             this.EditPersonalInfoButton.BackColor = System.Drawing.Color.White;
             this.EditPersonalInfoButton.ForeColor = System.Drawing.Color.Black;
-            this.EditPersonalInfoButton.Location = new System.Drawing.Point(157, 95);
+            this.EditPersonalInfoButton.Location = new System.Drawing.Point(157, 66);
             this.EditPersonalInfoButton.Name = "EditPersonalInfoButton";
             this.EditPersonalInfoButton.Size = new System.Drawing.Size(134, 66);
             this.EditPersonalInfoButton.TabIndex = 3;
@@ -376,16 +418,16 @@
             this.EditPersonalInfoButton.UseVisualStyleBackColor = false;
             this.EditPersonalInfoButton.Click += new System.EventHandler(this.EditPersonalInfoButton_Click);
             // 
-            // UserTicketHistoryButton
+            // customerOrderHistoryButton
             // 
-            this.UserTicketHistoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.UserTicketHistoryButton.ForeColor = System.Drawing.Color.White;
-            this.UserTicketHistoryButton.Location = new System.Drawing.Point(17, 95);
-            this.UserTicketHistoryButton.Name = "UserTicketHistoryButton";
-            this.UserTicketHistoryButton.Size = new System.Drawing.Size(134, 66);
-            this.UserTicketHistoryButton.TabIndex = 2;
-            this.UserTicketHistoryButton.Text = "View Ticket History";
-            this.UserTicketHistoryButton.UseVisualStyleBackColor = false;
+            this.customerOrderHistoryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.customerOrderHistoryButton.ForeColor = System.Drawing.Color.White;
+            this.customerOrderHistoryButton.Location = new System.Drawing.Point(22, 66);
+            this.customerOrderHistoryButton.Name = "customerOrderHistoryButton";
+            this.customerOrderHistoryButton.Size = new System.Drawing.Size(134, 66);
+            this.customerOrderHistoryButton.TabIndex = 2;
+            this.customerOrderHistoryButton.Text = "View Order History";
+            this.customerOrderHistoryButton.UseVisualStyleBackColor = false;
             // 
             // label11
             // 
@@ -412,10 +454,9 @@
             this.StaffAccountPanel.BackColor = System.Drawing.Color.White;
             this.StaffAccountPanel.Controls.Add(this.StaffLogoutButton);
             this.StaffAccountPanel.Controls.Add(this.button1);
-            this.StaffAccountPanel.Controls.Add(this.RemovePlayButton);
             this.StaffAccountPanel.Controls.Add(this.EditPlayButton);
             this.StaffAccountPanel.Controls.Add(this.AddPlayButton);
-            this.StaffAccountPanel.Controls.Add(this.AllTicketHistoryButton);
+            this.StaffAccountPanel.Controls.Add(this.newStaffAccountButton);
             this.StaffAccountPanel.Controls.Add(this.label13);
             this.StaffAccountPanel.Controls.Add(this.label12);
             this.StaffAccountPanel.ForeColor = System.Drawing.Color.White;
@@ -446,17 +487,6 @@
             this.button1.Text = "delete Review";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // RemovePlayButton
-            // 
-            this.RemovePlayButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.RemovePlayButton.ForeColor = System.Drawing.Color.White;
-            this.RemovePlayButton.Location = new System.Drawing.Point(28, 233);
-            this.RemovePlayButton.Name = "RemovePlayButton";
-            this.RemovePlayButton.Size = new System.Drawing.Size(134, 66);
-            this.RemovePlayButton.TabIndex = 9;
-            this.RemovePlayButton.Text = "Remove Play";
-            this.RemovePlayButton.UseVisualStyleBackColor = false;
-            // 
             // EditPlayButton
             // 
             this.EditPlayButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
@@ -465,8 +495,9 @@
             this.EditPlayButton.Name = "EditPlayButton";
             this.EditPlayButton.Size = new System.Drawing.Size(134, 66);
             this.EditPlayButton.TabIndex = 8;
-            this.EditPlayButton.Text = "Edit Play";
+            this.EditPlayButton.Text = "Edit/Delete Play";
             this.EditPlayButton.UseVisualStyleBackColor = false;
+            this.EditPlayButton.Click += new System.EventHandler(this.EditPlayButton_Click);
             // 
             // AddPlayButton
             // 
@@ -480,16 +511,16 @@
             this.AddPlayButton.UseVisualStyleBackColor = false;
             this.AddPlayButton.Click += new System.EventHandler(this.AddPlayButton_Click);
             // 
-            // AllTicketHistoryButton
+            // newStaffAccountButton
             // 
-            this.AllTicketHistoryButton.BackColor = System.Drawing.Color.White;
-            this.AllTicketHistoryButton.ForeColor = System.Drawing.Color.Black;
-            this.AllTicketHistoryButton.Location = new System.Drawing.Point(168, 90);
-            this.AllTicketHistoryButton.Name = "AllTicketHistoryButton";
-            this.AllTicketHistoryButton.Size = new System.Drawing.Size(134, 66);
-            this.AllTicketHistoryButton.TabIndex = 6;
-            this.AllTicketHistoryButton.Text = "View All Ticket History";
-            this.AllTicketHistoryButton.UseVisualStyleBackColor = false;
+            this.newStaffAccountButton.BackColor = System.Drawing.Color.White;
+            this.newStaffAccountButton.ForeColor = System.Drawing.Color.Black;
+            this.newStaffAccountButton.Location = new System.Drawing.Point(168, 90);
+            this.newStaffAccountButton.Name = "newStaffAccountButton";
+            this.newStaffAccountButton.Size = new System.Drawing.Size(134, 66);
+            this.newStaffAccountButton.TabIndex = 6;
+            this.newStaffAccountButton.Text = "Create New Staff Account ";
+            this.newStaffAccountButton.UseVisualStyleBackColor = false;
             // 
             // label13
             // 
@@ -515,12 +546,298 @@
             this.label12.TabIndex = 1;
             this.label12.Text = "Welcome back";
             // 
+            // PlaysPanel
+            // 
+            this.PlaysPanel.Controls.Add(this.playsBackbutton);
+            this.PlaysPanel.Controls.Add(this.savePlayDetailsbutton);
+            this.PlaysPanel.Controls.Add(this.dateTimePicker2);
+            this.PlaysPanel.Controls.Add(this.dateTimePicker1);
+            this.PlaysPanel.Controls.Add(this.submitPlayButton);
+            this.PlaysPanel.Controls.Add(this.textBox12);
+            this.PlaysPanel.Controls.Add(this.textBox11);
+            this.PlaysPanel.Controls.Add(this.textBox10);
+            this.PlaysPanel.Controls.Add(this.textBox9);
+            this.PlaysPanel.Controls.Add(this.textBox8);
+            this.PlaysPanel.Controls.Add(this.label20);
+            this.PlaysPanel.Controls.Add(this.label19);
+            this.PlaysPanel.Controls.Add(this.label18);
+            this.PlaysPanel.Controls.Add(this.label17);
+            this.PlaysPanel.Controls.Add(this.label16);
+            this.PlaysPanel.Controls.Add(this.label15);
+            this.PlaysPanel.Controls.Add(this.label14);
+            this.PlaysPanel.Location = new System.Drawing.Point(704, 296);
+            this.PlaysPanel.Name = "PlaysPanel";
+            this.PlaysPanel.Size = new System.Drawing.Size(313, 360);
+            this.PlaysPanel.TabIndex = 16;
+            // 
+            // playsBackbutton
+            // 
+            this.playsBackbutton.Location = new System.Drawing.Point(6, 329);
+            this.playsBackbutton.Name = "playsBackbutton";
+            this.playsBackbutton.Size = new System.Drawing.Size(86, 23);
+            this.playsBackbutton.TabIndex = 22;
+            this.playsBackbutton.Text = "Back To Menu";
+            this.playsBackbutton.UseVisualStyleBackColor = true;
+            this.playsBackbutton.Click += new System.EventHandler(this.playsBackbutton_Click);
+            // 
+            // savePlayDetailsbutton
+            // 
+            this.savePlayDetailsbutton.Location = new System.Drawing.Point(157, 324);
+            this.savePlayDetailsbutton.Name = "savePlayDetailsbutton";
+            this.savePlayDetailsbutton.Size = new System.Drawing.Size(133, 33);
+            this.savePlayDetailsbutton.TabIndex = 20;
+            this.savePlayDetailsbutton.Text = "Save Play Details";
+            this.savePlayDetailsbutton.UseVisualStyleBackColor = true;
+            this.savePlayDetailsbutton.Click += new System.EventHandler(this.savePlayDetailsbutton_Click);
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.CustomFormat = "HH:mm";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker2.Location = new System.Drawing.Point(157, 210);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.ShowUpDown = true;
+            this.dateTimePicker2.Size = new System.Drawing.Size(118, 20);
+            this.dateTimePicker2.TabIndex = 19;
+            this.dateTimePicker2.Value = new System.DateTime(2019, 3, 21, 14, 26, 55, 0);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(157, 171);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(118, 20);
+            this.dateTimePicker1.TabIndex = 18;
+            this.dateTimePicker1.Value = new System.DateTime(2019, 3, 21, 0, 0, 0, 0);
+            // 
+            // submitPlayButton
+            // 
+            this.submitPlayButton.Location = new System.Drawing.Point(98, 324);
+            this.submitPlayButton.Name = "submitPlayButton";
+            this.submitPlayButton.Size = new System.Drawing.Size(93, 33);
+            this.submitPlayButton.TabIndex = 17;
+            this.submitPlayButton.Text = "Add Play";
+            this.submitPlayButton.UseVisualStyleBackColor = true;
+            this.submitPlayButton.Click += new System.EventHandler(this.submitPlayButton_Click);
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(157, 292);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(118, 20);
+            this.textBox12.TabIndex = 11;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(157, 252);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(118, 20);
+            this.textBox11.TabIndex = 10;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(157, 94);
+            this.textBox10.Multiline = true;
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(118, 51);
+            this.textBox10.TabIndex = 9;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(157, 52);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(118, 20);
+            this.textBox9.TabIndex = 8;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(157, 15);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(118, 20);
+            this.textBox8.TabIndex = 7;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(19, 295);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(79, 13);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "Ticket Quantity";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(19, 255);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(88, 13);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Tickets Available";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(19, 216);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(65, 13);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "Time of Play";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(19, 174);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(65, 13);
+            this.label17.TabIndex = 3;
+            this.label17.Text = "Date of Play";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(19, 114);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 13);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Description";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(19, 55);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(36, 13);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "Genre";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(19, 18);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(27, 13);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "Title";
+            // 
+            // deletePlayPanel
+            // 
+            this.deletePlayPanel.Controls.Add(this.deletePlayBackbutton);
+            this.deletePlayPanel.Controls.Add(this.searchPlayEditbutton);
+            this.deletePlayPanel.Controls.Add(this.deletePlaySubmitButton);
+            this.deletePlayPanel.Controls.Add(this.dateTimePicker4);
+            this.deletePlayPanel.Controls.Add(this.label23);
+            this.deletePlayPanel.Controls.Add(this.dateTimePicker3);
+            this.deletePlayPanel.Controls.Add(this.textBox15);
+            this.deletePlayPanel.Controls.Add(this.label22);
+            this.deletePlayPanel.Controls.Add(this.label21);
+            this.deletePlayPanel.Location = new System.Drawing.Point(382, 358);
+            this.deletePlayPanel.Name = "deletePlayPanel";
+            this.deletePlayPanel.Size = new System.Drawing.Size(316, 282);
+            this.deletePlayPanel.TabIndex = 17;
+            // 
+            // deletePlayBackbutton
+            // 
+            this.deletePlayBackbutton.Location = new System.Drawing.Point(3, 251);
+            this.deletePlayBackbutton.Name = "deletePlayBackbutton";
+            this.deletePlayBackbutton.Size = new System.Drawing.Size(86, 23);
+            this.deletePlayBackbutton.TabIndex = 19;
+            this.deletePlayBackbutton.Text = "Back To Menu";
+            this.deletePlayBackbutton.UseVisualStyleBackColor = true;
+            this.deletePlayBackbutton.Click += new System.EventHandler(this.deletePlayBackbutton_Click);
+            // 
+            // searchPlayEditbutton
+            // 
+            this.searchPlayEditbutton.Location = new System.Drawing.Point(194, 233);
+            this.searchPlayEditbutton.Name = "searchPlayEditbutton";
+            this.searchPlayEditbutton.Size = new System.Drawing.Size(93, 46);
+            this.searchPlayEditbutton.TabIndex = 21;
+            this.searchPlayEditbutton.Text = "Search Play to Edit";
+            this.searchPlayEditbutton.UseVisualStyleBackColor = true;
+            this.searchPlayEditbutton.Click += new System.EventHandler(this.searchPlayEditbutton_Click);
+            // 
+            // deletePlaySubmitButton
+            // 
+            this.deletePlaySubmitButton.Location = new System.Drawing.Point(95, 246);
+            this.deletePlaySubmitButton.Name = "deletePlaySubmitButton";
+            this.deletePlaySubmitButton.Size = new System.Drawing.Size(93, 33);
+            this.deletePlaySubmitButton.TabIndex = 20;
+            this.deletePlaySubmitButton.Text = "Delete Play";
+            this.deletePlaySubmitButton.UseVisualStyleBackColor = true;
+            this.deletePlaySubmitButton.Click += new System.EventHandler(this.deletePlaySubmitButton_Click);
+            // 
+            // dateTimePicker4
+            // 
+            this.dateTimePicker4.CustomFormat = "HH:mm";
+            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker4.Location = new System.Drawing.Point(145, 196);
+            this.dateTimePicker4.Name = "dateTimePicker4";
+            this.dateTimePicker4.ShowUpDown = true;
+            this.dateTimePicker4.Size = new System.Drawing.Size(118, 20);
+            this.dateTimePicker4.TabIndex = 20;
+            this.dateTimePicker4.Value = new System.DateTime(2019, 3, 21, 14, 26, 55, 0);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(42, 196);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(65, 13);
+            this.label23.TabIndex = 20;
+            this.label23.Text = "Time of Play";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker3.Location = new System.Drawing.Point(145, 133);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(118, 20);
+            this.dateTimePicker3.TabIndex = 20;
+            this.dateTimePicker3.Value = new System.DateTime(2019, 3, 21, 0, 0, 0, 0);
+            // 
+            // textBox15
+            // 
+            this.textBox15.Location = new System.Drawing.Point(145, 52);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.Size = new System.Drawing.Size(118, 20);
+            this.textBox15.TabIndex = 20;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(42, 133);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(65, 13);
+            this.label22.TabIndex = 20;
+            this.label22.Text = "Date of Play";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(42, 52);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(27, 13);
+            this.label21.TabIndex = 20;
+            this.label21.Text = "Title";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(41, 625);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Home";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Account
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1135, 668);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.deletePlayPanel);
+            this.Controls.Add(this.PlaysPanel);
             this.Controls.Add(this.StaffAccountPanel);
             this.Controls.Add(this.RegisterPanel);
             this.Controls.Add(this.AccountPanel);
@@ -538,6 +855,10 @@
             this.AccountPanel.PerformLayout();
             this.StaffAccountPanel.ResumeLayout(false);
             this.StaffAccountPanel.PerformLayout();
+            this.PlaysPanel.ResumeLayout(false);
+            this.PlaysPanel.PerformLayout();
+            this.deletePlayPanel.ResumeLayout(false);
+            this.deletePlayPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -571,13 +892,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button EditPersonalInfoButton;
-        private System.Windows.Forms.Button UserTicketHistoryButton;
+        private System.Windows.Forms.Button customerOrderHistoryButton;
         private System.Windows.Forms.Button logOutButton;
         private System.Windows.Forms.Panel StaffAccountPanel;
-        private System.Windows.Forms.Button RemovePlayButton;
         private System.Windows.Forms.Button EditPlayButton;
         private System.Windows.Forms.Button AddPlayButton;
-        private System.Windows.Forms.Button AllTicketHistoryButton;
+        private System.Windows.Forms.Button newStaffAccountButton;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button1;
@@ -587,5 +907,35 @@
         private System.Windows.Forms.Panel displayInfoPanel;
         private System.Windows.Forms.Label displayInfo;
         private System.Windows.Forms.Button editDetailsButton;
+        private System.Windows.Forms.Panel PlaysPanel;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Button submitPlayButton;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Panel deletePlayPanel;
+        private System.Windows.Forms.DateTimePicker dateTimePicker4;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button deletePlaySubmitButton;
+        private System.Windows.Forms.Button searchPlayEditbutton;
+        private System.Windows.Forms.Button savePlayDetailsbutton;
+        private System.Windows.Forms.Button RegisterBackbutton;
+        private System.Windows.Forms.Button playsBackbutton;
+        private System.Windows.Forms.Button deletePlayBackbutton;
+        private System.Windows.Forms.Button button2;
     }
 }

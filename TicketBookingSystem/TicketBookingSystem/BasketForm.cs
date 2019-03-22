@@ -16,17 +16,17 @@ namespace TicketBookingSystem
 
         public string title;
         public string date;
-        
+
         public BasketForm()
         {
             InitializeComponent();
-            
+
 
             string LoginUsername = "User1";
             object[] meta = new object[1];
             bool read = true;
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
@@ -74,7 +74,7 @@ namespace TicketBookingSystem
             int Stand = Convert.ToInt32(numericUpDown1.Value);
             int Child = Convert.ToInt32(numericUpDown2.Value);
             int OAP = Convert.ToInt32(numericUpDown3.Value);
-            
+
             if (TotalBox.Text == "")
             {
                 int Total = (Stand * 8) + (Child * 3) + (OAP * 4);
@@ -82,7 +82,7 @@ namespace TicketBookingSystem
             }
             else
             {
-                
+
                 TotalBox.Text = "";
                 int Total = (Stand * 8) + (Child * 3) + (OAP * 4);
                 TotalBox.Text += Total;
@@ -97,8 +97,8 @@ namespace TicketBookingSystem
         }
 
 
-        
-            
+
+
         private void button2_Click(object sender, EventArgs e)
         {
             int Stand = Convert.ToInt32(numericUpDown1.Value);
@@ -138,7 +138,7 @@ namespace TicketBookingSystem
             Detailsl.Visible = true;
 
 
-            Detailsl.Text = "Title: " + Titlel.Text + "   Date:  " + Datel.Text + "   Total Price = £" + price + "\n" + numericUpDown1.Value + "  Standard Tickets  " + numericUpDown2.Value + "  Child Tickets  +" + numericUpDown3.Value + "  OAP Tickets" ;
+            Detailsl.Text = "Title: " + Titlel.Text + "   Date:  " + Datel.Text + "   Total Price = £" + price + "\n" + numericUpDown1.Value + "  Standard Tickets  " + numericUpDown2.Value + "  Child Tickets  +" + numericUpDown3.Value + "  OAP Tickets";
 
 
         }
