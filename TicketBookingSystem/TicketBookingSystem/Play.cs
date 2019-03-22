@@ -40,7 +40,7 @@ public class Play
 
 
         string connString;
-        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\Code\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
         OleDbCommand myCommand = new OleDbCommand("INSERT INTO Plays (Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketsQuantity) VALUES (?,?,?,?,?,?,?)", myConnection);
@@ -66,7 +66,7 @@ public class Play
         string EditField = Edit;
         string PlayIDField = PlayID;
         string connString;
-        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\Code\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
 
@@ -139,7 +139,7 @@ public class Play
         string PlayIDDel = playid;
 
         string connString;
-        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\Code\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
 
@@ -153,9 +153,9 @@ public class Play
         //May need more identifiers to prevent clashes
     }
 
-   /* public string DisplayReview(string readTitle, string readDate)
+    public string DisplayReview()
     {
-        string input = Genret.Text;
+        
         string returnReview = "";
         string connString;
         connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\Code\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
@@ -164,8 +164,8 @@ public class Play
         myConnection.Open();
 
 
-        OleDbCommand myCommand = new OleDbCommand("SELECT Title FROM Plays WHERE Title = @Title", myConnection);
-        myCommand.Parameters.AddWithValue("@Title", input);
+        OleDbCommand myCommand = new OleDbCommand("SELECT DISTINCT Title FROM Plays WHERE Title = @Title", myConnection);
+        //myCommand.Parameters.AddWithValue("@Title", input);
 
 
 
@@ -176,11 +176,11 @@ public class Play
 
         }
         reader.Close();
-        TitleL.Text = returnReview;
+       
         return returnReview;
 
 
-    }*/
+    }
 
     public string DisplayPlays()
     {
@@ -189,15 +189,15 @@ public class Play
         string initialreturn = "";
         string addString = "";
         string connString;
-        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\Code\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+        connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
 
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 50; i++)
         {
-            OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE PlayID = @Input", myConnection);
-            myCommand.Parameters.AddWithValue("@Input", i);
+            OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays", myConnection);
+            
             OleDbDataReader reader = myCommand.ExecuteReader();
             while (reader.Read())
             {
@@ -225,12 +225,13 @@ public class Play
 
     }
 
-    public void SearchPlays()
+    /*public static SearchPlays()
     {
         string returnAllPlays = "";
         string initialreturn = "";
         string addString = "";
         string connString;
+        string[] Strings = new string[64];
         connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\Code\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
 
@@ -245,6 +246,7 @@ public class Play
             while (reader.Read())
             {
                 initialreturn = reader.GetString(0);
+                Strings[i] = initialreturn;
                 comboBox1.Items.Add(initialreturn);
                 addString += "Title: " + initialreturn + "  ";
                 initialreturn = reader.GetString(1);
@@ -263,10 +265,10 @@ public class Play
         returnAllPlays = addString;
 
         AllPlaysl.Text = returnAllPlays;
+        return Strings;
 
-
-    }
-
+    }*/
+    
 
     //Using both the title and its date as an identifier 
 

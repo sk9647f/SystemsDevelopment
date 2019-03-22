@@ -439,6 +439,7 @@
             this.BookTickB.Text = "Book Ticket";
             this.BookTickB.UseVisualStyleBackColor = true;
             this.BookTickB.Visible = false;
+            this.BookTickB.Click += new System.EventHandler(this.BookTickB_Click);
             // 
             // PlaysForm
             // 
