@@ -1,0 +1,15 @@
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.csprojResolveAssemblyReference.cache
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.Account.resources
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.Form1.resources
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.Properties.Resources.resources
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.csproj.GenerateResource.Cache
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.csproj.CoreCompileInputs.cache
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\bin\Debug\TicketSysDB.mdb
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\bin\Debug\TicketBookingSystem.exe.config
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\bin\Debug\TicketBookingSystem.exe
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\bin\Debug\TicketBookingSystem.pdb
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.exe
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.pdb
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.BasketForm.resources
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.PlaysForm.resources
+L:\Comp-1632-System Development Project\TicketBookingSystem\TicketBookingSystem\obj\Debug\TicketBookingSystem.PlaysView.resources
