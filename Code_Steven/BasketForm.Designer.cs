@@ -39,6 +39,7 @@
             this.Discountl = new System.Windows.Forms.Label();
             this.ConfirmDetailsl = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.Backb = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +80,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.Backb);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.FinalPricel);
             this.panel1.Controls.Add(this.InputDiscountb);
@@ -145,6 +147,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // Backb
+            // 
+            this.Backb.Location = new System.Drawing.Point(233, 361);
+            this.Backb.Name = "Backb";
+            this.Backb.Size = new System.Drawing.Size(95, 23);
+            this.Backb.TabIndex = 31;
+            this.Backb.Text = "Back";
+            this.Backb.UseVisualStyleBackColor = true;
+            this.Backb.Click += new System.EventHandler(this.Backb_Click);
+            // 
             // BasketForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -176,5 +188,6 @@
         private System.Windows.Forms.Label Discountl;
         private System.Windows.Forms.Label ConfirmDetailsl;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Backb;
     }
 }

@@ -64,7 +64,7 @@ namespace TicketBookingSystem
 
                     {
                         Orderlist.Add(orderID + "");
-                        Listl.Text += orderID + "      " + play + "     " + datestring + "    " + time + "    £" + price + "    " +  "\n" ;
+                        Listl.Text += orderID + "      " + play + "     " + datestring + "    " + time + "    £" + price + "    " +  "\n" + "\n" + "\n";
                         OrderBox.Items.Add(orderID);
                     }
 
@@ -206,7 +206,29 @@ namespace TicketBookingSystem
             ChosenPlays basket = new ChosenPlays();
 
             basket.Checkout(OrderBox.Text, (checkdouble*discountValue));
+            MessageBox.Show("Play Booked");
+            basket.RemoveFromBasket(OrderBox.Text);
+            Listl.Text = "";
+            OrderBox.Items.Clear();
+            OrderBox.Text = "";
+            updateScreen();
 
+
+            panel1.Visible = false;
+            DeleteOrderB.Visible = true;
+            Confirmb.Visible = true;
+            Listl.Visible = true;
+            OrderBox.Visible = true;
+
+        }
+
+        private void Backb_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = false;
+            DeleteOrderB.Visible = true;
+            Confirmb.Visible = true;
+            Listl.Visible = true;
+            OrderBox.Visible = true;
         }
     }
 }
