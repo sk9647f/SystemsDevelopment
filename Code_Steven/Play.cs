@@ -68,7 +68,7 @@ public class Play
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
 
-        if (titleInput != "")
+        if (titleInput != "" || titleInput!= null)
         {
             OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE Title = @InputTitle AND DateofPlay = @InputDate", myConnection);
             myCommand.Parameters.AddWithValue("@InputTitle", titleInput);
@@ -92,6 +92,36 @@ public class Play
                 
 
                 
+                timeBoxValue.Add(time);
+
+
+
+            }
+        }
+        else if(titleInput == "" || titleInput == null)
+        {
+            OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE DateofPlay = @InputDate", myConnection);
+            
+            myCommand.Parameters.AddWithValue("@InputDate", dateInput);
+            OleDbDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+
+
+
+                title = reader.GetString(0);
+                time = reader.GetString(2);
+
+
+                if (title != previousTitle)
+                {
+                    comboValue.Add(title);
+                    previousTitle = title;
+                }
+
+
+
+
                 timeBoxValue.Add(time);
 
 
@@ -163,7 +193,7 @@ public class Play
         OleDbConnection myConnection = new OleDbConnection(connString);
         myConnection.Open();
 
-        if (title != "")
+        if (input != "" || input != null)
         {
             OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE DateofPlay = @InputDate AND Title = @InputTitle ", myConnection);
             
@@ -200,7 +230,7 @@ public class Play
         }
 
         
-        else
+        else if(input == "" || input == null)
         {
             OleDbCommand myCommand = new OleDbCommand("SELECT Title, DateofPlay, TimeofPlay FROM Plays WHERE DateOfPlay = @Iputdate", myConnection);
             

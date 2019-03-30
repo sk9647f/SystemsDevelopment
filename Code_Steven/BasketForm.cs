@@ -242,7 +242,7 @@ namespace TicketBookingSystem
             Confirmb.Visible = true;
             Listl.Visible = true;
             OrderBox.Visible = true;
-
+            
         }
 
         private void Backb_Click(object sender, EventArgs e)
