@@ -138,6 +138,9 @@ namespace TicketBookingSystem
             ReviewsReadb.Visible = false;
 
             ConfirmReview.Visible = false;
+            DeleteReviewb.Visible = false;
+
+            DeleteReviewBox.Visible = false;
 
         }
 
@@ -576,6 +579,9 @@ namespace TicketBookingSystem
                     OAPPl.Text = "£4.50";
                 }
 
+                
+                
+
             }
             else
             {
@@ -613,28 +619,37 @@ namespace TicketBookingSystem
             float OAP = Convert.ToInt32(OAPUpDn.Value);
             float Quantity = Stand + Child + OAP;
             ChosenPlays basket = new ChosenPlays();
-            basket.AddToBasket("User1", BookTitlel.Text, Stand, Child, OAP, dateTimePicker2.Value, BookTimel.Text, CurrTotal.Text, Quantity);
-            
-            CheckValuel.Text = basket.checkValue.ToString();
-            
-            if (basket.success == 1){
-
-                MessageBox.Show("Your tickets were booked successfully");
-                CheckValuel.Text = basket.checkValue.ToString();
-
-
-                
-
-            }
-            else if(basket.success == 2)
+            if(Account.LoginUsername != "" && Account.LoginUsername != null)
             {
-                MessageBox.Show("You booked more seats than are available");
+                basket.AddToBasket(Account.LoginUsername, BookTitlel.Text, Stand, Child, OAP, dateTimePicker2.Value, BookTimel.Text, CurrTotal.Text, Quantity);
                 CheckValuel.Text = basket.checkValue.ToString();
 
+                if (basket.success == 1)
+                {
+
+                    MessageBox.Show("Your tickets were booked successfully");
+                    CheckValuel.Text = basket.checkValue.ToString();
+
+
+
+
+                }
+                else if (basket.success == 2)
+                {
+                    MessageBox.Show("You booked more seats than are available");
+                    CheckValuel.Text = basket.checkValue.ToString();
+
+                }
+                StandardUpDn.Value = 0;
+                ChildUpDn.Value = 0;
+                OAPUpDn.Value = 0;
             }
-            StandardUpDn.Value = 0;
-            ChildUpDn.Value = 0;
-            OAPUpDn.Value = 0;
+            else
+            {
+                MessageBox.Show("Please Login to continue");
+            }
+            
+            
 
 
 
@@ -642,7 +657,7 @@ namespace TicketBookingSystem
 
         private void ReviewsWriteB_Click(object sender, EventArgs e)
         {
-            ReviewsWriteB.Visible = false;
+            ReviewsWriteB.Visible = true;
             ReviewTextBox.Visible = true;
             ConfirmReview.Visible = true;
 
@@ -680,9 +695,91 @@ namespace TicketBookingSystem
         private void button1_Click(object sender, EventArgs e)
         {
 
+
+            Reviews review = new Reviews();
+            AllPlaysl.Text = review.DisplayReview(comboBox1.Text);
+            if(Account.LoginUsername == "Staff1")
+            {
+                DeleteReviewb.Visible = true;
+
+                DeleteReviewBox.Visible = true;
+                BookTickB.Visible = false;
+
+                comboBox1.Visible = false;
+
+                dateTimePicker2.Visible = false;
+
+                SearchDateB.Visible = false;
+
+                AddBack.Visible = true;
+
+                PlayDatel.Visible = false;
+
+                AllPlaysl.Visible = true;
+
+                panel1.Visible = false;
+
+                TimeBox.Visible = false;
+
+                SearchGenreb.Visible = false;
+
+                SearchGenrel.Visible = false;
+
+                comboBox2.Visible = false;
+
+                playTitleTextBox.Visible = false;
+
+                PlayTitlel.Visible = false;
+
+                ReviewTextBox.Visible = false;
+
+                ReviewsWriteB.Visible = false;
+
+                ReviewsReadb.Visible = false;
+
+                ConfirmReview.Visible = false;
+            }
+
+            else
+            {
+                BookTickB.Visible = false;
+
+                comboBox1.Visible = false;
+
+                dateTimePicker2.Visible = false;
+
+                SearchDateB.Visible = false;
+
+                AddBack.Visible = true;
+
+                PlayDatel.Visible = false;
+
+                AllPlaysl.Visible = true;
+
+                panel1.Visible = false;
+
+                TimeBox.Visible = false;
+
+                SearchGenreb.Visible = false;
+
+                SearchGenrel.Visible = false;
+
+                comboBox2.Visible = false;
+
+                playTitleTextBox.Visible = false;
+
+                PlayTitlel.Visible = false;
+
+                ReviewTextBox.Visible = false;
+
+                ReviewsWriteB.Visible = false;
+
+                ReviewsReadb.Visible = false;
+
+                ConfirmReview.Visible = false;
+            }
             
-            Play plays = new Play();
-            AllPlaysl.Text = plays.DisplayReview(comboBox1.Text);
+
         }
 
 
@@ -702,13 +799,28 @@ namespace TicketBookingSystem
             Play plays = new Play();
             if (ReviewTextBox.Text != "")
             {
-                review.addReview("User1", ReviewTextBox.Text, comboBox1.Text);
-                ReviewTextBox.Clear();
+                if(Account.LoginUsername != "" && Account.LoginUsername != null)
+                {
+                    review.addReview(Account.LoginUsername, ReviewTextBox.Text, comboBox1.Text);
+                    ReviewTextBox.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Please Login to Continue");
+                }
             }
             if (ReviewTextBox.Text == "")
             {
                 MessageBox.Show("The textbox can't be left empty for a review");
             }
+        }
+
+        private void DeleteReviewb_Click(object sender, EventArgs e)
+        {
+            Reviews review = new Reviews();
+            review.DeleteReview(DeleteReviewBox.Text);
+            DeleteReviewBox.Text = "";
+            AllPlaysl.Text = review.DisplayReview(comboBox1.Text);
         }
 
 

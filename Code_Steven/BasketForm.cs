@@ -25,58 +25,77 @@ namespace TicketBookingSystem
 
         public BasketForm()
         {
-            InitializeComponent();
-            updateScreen();
+
+            if (Account.LoginUsername != null)
+            {
+                InitializeComponent();
+                updateScreen();
+            }
+            else
+            {
+                MessageBox.Show("Please Login to Continue");
+            }
             
         }
 
         public void updateScreen()
         {
-            string LoginUsername = "User1";
-            object[] meta = new object[1];
-            bool read = true;
-            string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
-            
-            OleDbConnection myConnection = new OleDbConnection(connString);
-            myConnection.Open();
-            OleDbCommand myCommand = new OleDbCommand("SELECT * FROM [Basket] WHERE [UserID] = @Username", myConnection);
-
-            myCommand.Parameters.AddWithValue("@Username", LoginUsername);
-
-            OleDbDataReader reader = myCommand.ExecuteReader();
-
-            if (reader.Read() == true)
+            string LoginUsername = Account.LoginUsername;
+            if (LoginUsername != null)
             {
-                do
+                object[] meta = new object[1];
+                bool read = true;
+                string connString;
+                connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+                OleDbConnection myConnection = new OleDbConnection(connString);
+                myConnection.Open();
+                OleDbCommand myCommand = new OleDbCommand("SELECT * FROM [Basket] WHERE [UserID] = @Username", myConnection);
+
+                myCommand.Parameters.AddWithValue("@Username", LoginUsername);
+
+                OleDbDataReader reader = myCommand.ExecuteReader();
+
+                if (reader.Read() == true)
                 {
-                    int NumberOfColums = reader.GetValues(meta);
-                    int NumberOfRows = reader.GetValues(meta);
-                    int orderID = reader.GetInt32(0);
-                    string play = reader.GetString(2);
-                    DateTime date = reader.GetDateTime(6);
-                    string datestring = date.ToShortDateString();
-                    string time = reader.GetString(7);
-                    float price = reader.GetInt32(8);
-                    int quantity = reader.GetInt32(9);
-                    string TicketType = reader.GetString(3);
-                    
-
+                    do
                     {
-                        Orderlist.Add(orderID + "");
-                        Listl.Text += orderID + "      " + play + "     " + datestring + "    " + time + "    £" + price + "    " +  "\n" + "\n" + "\n";
-                        OrderBox.Items.Add(orderID);
-                    }
+                        int NumberOfColums = reader.GetValues(meta);
+                        int NumberOfRows = reader.GetValues(meta);
+                        int orderID = reader.GetInt32(0);
+                        string play = reader.GetString(2);
+                        DateTime date = reader.GetDateTime(6);
+                        string datestring = date.ToShortDateString();
+                        string time = reader.GetString(7);
+                        float price = reader.GetInt32(8);
+                        int quantity = reader.GetInt32(9);
+                        string TicketType = reader.GetString(3);
 
-                    Console.WriteLine();
-                    read = reader.Read();
-                } while (read == true);
+
+                        {
+                            Orderlist.Add(orderID + "");
+                            Listl.Text += orderID + "      " + play + "     " + datestring + "    " + time + "    £" + price + "    " + "\n" + "\n" + "\n";
+                            OrderBox.Items.Add(orderID);
+                        }
+
+                        Console.WriteLine();
+                        read = reader.Read();
+                    } while (read == true);
+                }
+                reader.Close();
+
+
+
             }
-            reader.Close();
-            
-            
-            
+
+
+
+            else
+            {
+                MessageBox.Show("Please Login to Continue");
+            }
         }
+            
 
 
         public void resetCombo()
@@ -94,6 +113,7 @@ namespace TicketBookingSystem
             ChosenPlays basket = new ChosenPlays();
             
             basket.RemoveFromBasket(OrderBox.Text);
+            MessageBox.Show("Removed item from basket");
             Listl.Text = "";
             OrderBox.Items.Clear();
             OrderBox.Text = "";
@@ -118,8 +138,11 @@ namespace TicketBookingSystem
             OrderBox.Visible = false;
             ChosenPlays basket = new ChosenPlays();
 
-           ConfirmDetailsl.Text = basket.Order(OrderBox.Text);
-
+           ConfirmDetailsl.Text = basket.Order(OrderBox.Text,Account.LoginUsername);
+            if(basket.quantity > 20)
+            {
+                discountValue = discountValue - 0.05f;
+            }
            FinalPricel.Text = "Final Price =  £" + (basket.checkValue*discountValue);
             checkdouble = basket.checkValue;
 
@@ -204,7 +227,7 @@ namespace TicketBookingSystem
         private void button1_Click(object sender, EventArgs e)
         {
             ChosenPlays basket = new ChosenPlays();
-
+            //MessageBox.Show(basket.checkEmail(Account.LoginUsername));
             basket.Checkout(OrderBox.Text, (checkdouble*discountValue));
             MessageBox.Show("Play Booked");
             basket.RemoveFromBasket(OrderBox.Text);

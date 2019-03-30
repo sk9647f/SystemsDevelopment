@@ -49,6 +49,7 @@
             this.SearchGenreb = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.CheckValuel = new System.Windows.Forms.Label();
+            this.ReviewTextBox = new System.Windows.Forms.TextBox();
             this.BookTimel = new System.Windows.Forms.Label();
             this.Currentl = new System.Windows.Forms.Label();
             this.BookDatel = new System.Windows.Forms.Label();
@@ -69,8 +70,9 @@
             this.BookConfb = new System.Windows.Forms.Button();
             this.TimeBox = new System.Windows.Forms.ComboBox();
             this.ReviewsWriteB = new System.Windows.Forms.Button();
-            this.ReviewTextBox = new System.Windows.Forms.TextBox();
             this.ConfirmReview = new System.Windows.Forms.Button();
+            this.DeleteReviewBox = new System.Windows.Forms.TextBox();
+            this.DeleteReviewb = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ticketSysDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playsBindingSource1)).BeginInit();
@@ -271,6 +273,15 @@
             this.CheckValuel.TabIndex = 59;
             this.CheckValuel.Text = "Value";
             // 
+            // ReviewTextBox
+            // 
+            this.ReviewTextBox.Location = new System.Drawing.Point(9, -2);
+            this.ReviewTextBox.Multiline = true;
+            this.ReviewTextBox.Name = "ReviewTextBox";
+            this.ReviewTextBox.Size = new System.Drawing.Size(355, 160);
+            this.ReviewTextBox.TabIndex = 47;
+            this.ReviewTextBox.Visible = false;
+            // 
             // BookTimel
             // 
             this.BookTimel.AutoSize = true;
@@ -461,15 +472,6 @@
             this.ReviewsWriteB.Visible = false;
             this.ReviewsWriteB.Click += new System.EventHandler(this.ReviewsWriteB_Click);
             // 
-            // ReviewTextBox
-            // 
-            this.ReviewTextBox.Location = new System.Drawing.Point(11, 0);
-            this.ReviewTextBox.Multiline = true;
-            this.ReviewTextBox.Name = "ReviewTextBox";
-            this.ReviewTextBox.Size = new System.Drawing.Size(355, 160);
-            this.ReviewTextBox.TabIndex = 47;
-            this.ReviewTextBox.Visible = false;
-            // 
             // ConfirmReview
             // 
             this.ConfirmReview.Location = new System.Drawing.Point(387, 316);
@@ -481,11 +483,32 @@
             this.ConfirmReview.Visible = false;
             this.ConfirmReview.Click += new System.EventHandler(this.ConfirmReview_Click);
             // 
+            // DeleteReviewBox
+            // 
+            this.DeleteReviewBox.Location = new System.Drawing.Point(12, 95);
+            this.DeleteReviewBox.Name = "DeleteReviewBox";
+            this.DeleteReviewBox.Size = new System.Drawing.Size(200, 20);
+            this.DeleteReviewBox.TabIndex = 59;
+            this.DeleteReviewBox.Visible = false;
+            // 
+            // DeleteReviewb
+            // 
+            this.DeleteReviewb.Location = new System.Drawing.Point(218, 93);
+            this.DeleteReviewb.Name = "DeleteReviewb";
+            this.DeleteReviewb.Size = new System.Drawing.Size(92, 23);
+            this.DeleteReviewb.TabIndex = 60;
+            this.DeleteReviewb.Text = "Delete Review";
+            this.DeleteReviewb.UseVisualStyleBackColor = true;
+            this.DeleteReviewb.Visible = false;
+            this.DeleteReviewb.Click += new System.EventHandler(this.DeleteReviewb_Click);
+            // 
             // PlaysForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 365);
+            this.Controls.Add(this.DeleteReviewb);
+            this.Controls.Add(this.DeleteReviewBox);
             this.Controls.Add(this.ConfirmReview);
             this.Controls.Add(this.ReviewsWriteB);
             this.Controls.Add(this.TimeBox);
@@ -562,5 +585,7 @@
         private System.Windows.Forms.TextBox ReviewTextBox;
         private System.Windows.Forms.Button ConfirmReview;
         private System.Windows.Forms.Label CheckValuel;
+        private System.Windows.Forms.TextBox DeleteReviewBox;
+        private System.Windows.Forms.Button DeleteReviewb;
     }
 }

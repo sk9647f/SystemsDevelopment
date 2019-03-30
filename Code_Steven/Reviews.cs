@@ -35,8 +35,79 @@ namespace TicketBookingSystem
 
             myCommand.ExecuteNonQuery();
         }
-        public void DeleteReview()
+        public void DeleteReview(string ReviewID)
         {
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+
+
+            OleDbCommand RemoveCommand = new OleDbCommand("DELETE FROM Reviews WHERE ReviewID = @ReviewID", myConnection);
+            RemoveCommand.Parameters.AddWithValue("@ReviewID",ReviewID);
+            myConnection.Open();
+            RemoveCommand.ExecuteNonQuery();
+            myConnection.Close();
+        }
+
+
+        public string DisplayReview(string Title)
+        {
+
+            string returnReview = "";
+            int returnint;
+            string addString = "";
+            string connString;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+
+
+            OleDbCommand myCommand = new OleDbCommand("SELECT DISTINCT ReviewID, Author, Review FROM Reviews WHERE Title = @Title", myConnection);
+            myCommand.Parameters.AddWithValue("@Title", Title);
+
+
+
+            OleDbDataReader reader = myCommand.ExecuteReader();
+
+            if(Account.LoginUsername == "Staff1")
+            {
+                while (reader.Read())
+                {
+
+                    returnint = reader.GetInt32(0);
+                    addString += "ReviewID = " + returnint;
+                    returnReview = reader.GetString(1);
+                    addString += "   Author: " + returnReview + ": ";
+                    returnReview = reader.GetString(2);
+                    addString += "  " + returnReview + "";
+                    addString += "\n";
+                    addString += "\n";
+
+                }
+            }
+
+            else
+            {
+                while (reader.Read())
+                {
+
+                   
+                    returnReview = reader.GetString(1);
+                    addString += "   Author: " + returnReview + ": ";
+                    returnReview = reader.GetString(2);
+                    addString += "  " + returnReview + "";
+                    addString += "\n";
+                    addString += "\n";
+
+                }
+            }
+            
+            reader.Close();
+
+            return addString;
+
 
         }
 

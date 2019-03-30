@@ -28,16 +28,17 @@ namespace TicketBookingSystem
         public string Child;
         public DateTime date;
         public string time;
-
         public float price;
         public float quantity;
+
+        public string userEmail;
         public int success = 1;
         public double checkValue;
         public override void AddToOrder(string user, string play, int cost, int quantity, DateTime date, string ticketType)
         {
             
         }
-        public string Order(string OrderID)
+        public string Order(string OrderID, string UserID)
         {
             string connString;
             string initialreturn;
@@ -61,8 +62,8 @@ namespace TicketBookingSystem
                 initialreturn = reader.GetString(7);
                 addString += "Time: " + initialreturn + "\n";
                 addString += "\n";
-                intreturn = reader.GetInt32(9);
-                addString += "Ticket Quantity = " + intreturn;
+                quantity = reader.GetInt32(9);
+                addString += "Ticket Quantity = " + quantity;
                 addString += "\n";
                 initialreturn = reader.GetString(3);
                 addString += initialreturn + "  Standard Tickets";
@@ -77,15 +78,48 @@ namespace TicketBookingSystem
 
 
             }
+            
 
 
-            myConnection.Close();
+
+            
+            
+
+
+                myConnection.Close();
 
             
 
             return addString;
 
         }
+
+        public string checkEmail(string username)
+        {
+            string returnoutput = "";
+            string connString = "";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+            OleDbCommand myCommand = new OleDbCommand("SELECT * FROM User", myConnection);
+
+            //myCommand.Parameters.AddWithValue("@Username", username);
+            OleDbDataReader reader = myCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                returnoutput = reader.GetString(0);
+
+            }
+
+            return returnoutput;
+        }
+
+
+
+
+
+
         public void Checkout(string OrderID, double finalPrice)
         {
             
