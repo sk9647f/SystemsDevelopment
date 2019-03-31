@@ -428,6 +428,7 @@
             this.customerOrderHistoryButton.TabIndex = 2;
             this.customerOrderHistoryButton.Text = "View Order History";
             this.customerOrderHistoryButton.UseVisualStyleBackColor = false;
+            this.customerOrderHistoryButton.Click += new System.EventHandler(this.customerOrderHistoryButton_Click);
             // 
             // label11
             // 

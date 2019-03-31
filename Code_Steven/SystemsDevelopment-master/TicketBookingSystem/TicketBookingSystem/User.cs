@@ -58,7 +58,7 @@ namespace TicketBookingSystem
 
             //needs to write to database 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
 
@@ -82,7 +82,7 @@ namespace TicketBookingSystem
         {
             //delete row from database
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             OleDbCommand myCommand = new OleDbCommand("DELETE FROM [User] WHERE Username = @Username", myConnection);
@@ -97,7 +97,7 @@ namespace TicketBookingSystem
         {
             //show details from database or local variables
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
 
@@ -136,7 +136,7 @@ namespace TicketBookingSystem
         public override void EditPersonalDetails(string user)
         {
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb"; ;
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb"; ;
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             OleDbCommand myCommand = new OleDbCommand("SELECT * FROM [User] WHERE Username = @Username", myConnection);
@@ -158,7 +158,7 @@ namespace TicketBookingSystem
         public override void UpdateDetails(string user, string pass, string forname, string surname, string address, string phoneNumber, string email, string loginUsername)
         {
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
 
             OleDbCommand myCommand = new OleDbCommand("UPDATE [User] SET Username = @Username, [Password] = @Password, Forename = @Forname, Surname = @Surname, Address = @Address, PhoneNumber = @PhoneNumber, Email = @Email WHERE Username = @LoginUsername", myConnection);
@@ -210,7 +210,7 @@ namespace TicketBookingSystem
         public void AddPlay(string title, string genre, string description, DateTime dateOfPlay, DateTime timeOfPlay, int ticketsAvailable, int ticketQuantity)
         {
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             OleDbCommand myCommand = new OleDbCommand("INSERT INTO Plays (Title, Genre, Description, DateOfPlay, TimeOfPlay, TicketsAvailable, TicketsQuantity) VALUES (?,?,?,?,?,?,?)", myConnection);
@@ -231,7 +231,7 @@ namespace TicketBookingSystem
         {
 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             OleDbCommand myCommand = new OleDbCommand("SELECT * FROM Plays WHERE Title = @Title AND DateOfPlay = @DateOfPlay AND TimeOfPlay = @TimeOfPlay", myConnection);
@@ -258,7 +258,7 @@ namespace TicketBookingSystem
         public void UpdatePlay(string title, string genre, string description, DateTime dateOfPlay, DateTime timeOfPlay, int ticketsAvailable, int ticketQuantity, string titleS, DateTime dateOfPlayS, DateTime timeOfPlayS)
         {
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
             OleDbCommand myCommand = new OleDbCommand("UPDATE Plays SET Title = @Title, Genre = @Genre, Description = @Description, DateOfPlay = @DateOfPlay, TimeOfPlay = @TimeOfPlay, TicketsAvailable = @TicketsAvailable, TicketsQuantity = @TicketsQuantity WHERE Title = @TitleS AND DateOfPlay = @DateOfPlayS AND TimeOfPlay = @TimeOfPlayS", myConnection);
@@ -281,7 +281,7 @@ namespace TicketBookingSystem
         public void DeletePlay(string title, DateTime dateOfPlay, DateTime timeOfPlay)
         {
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             OleDbCommand myCommand = new OleDbCommand("DELETE FROM Plays WHERE Title = @Title AND DateOfPlay = @DateOfPlay AND TimeOfPlay = @TimeOfPlay", myConnection);

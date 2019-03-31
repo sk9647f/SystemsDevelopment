@@ -44,7 +44,7 @@ namespace TicketBookingSystem
             InitializeComponent();
 
 
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
         }
 
@@ -524,6 +524,15 @@ namespace TicketBookingSystem
         {
             Form1 form1 = new Form1();
             form1.ShowDialog();
+        }
+
+        private void customerOrderHistoryButton_Click(object sender, EventArgs e)
+        {
+            ChosenPlays basket = new ChosenPlays();
+            string OrderHistory = "";
+            OrderHistory = basket.OrderHistory(LoginUsername);
+            System.IO.File.WriteAllText(@"C:\Users\steve\WriteText.txt", OrderHistory);
+            MessageBox.Show(""+OrderHistory);
         }
     }
 }

@@ -46,7 +46,7 @@ namespace TicketBookingSystem
                 object[] meta = new object[1];
                 bool read = true;
                 string connString;
-                connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+                connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
                 OleDbConnection myConnection = new OleDbConnection(connString);
                 myConnection.Open();
@@ -230,6 +230,10 @@ namespace TicketBookingSystem
             //MessageBox.Show(basket.checkEmail(Account.LoginUsername));
             basket.Checkout(OrderBox.Text, (checkdouble*discountValue));
             MessageBox.Show("Play Booked");
+            string login = Account.LoginUsername;
+            string reciept = basket.checkEmail(login);
+            MessageBox.Show(reciept);
+
             basket.RemoveFromBasket(OrderBox.Text);
             Listl.Text = "";
             OrderBox.Items.Clear();

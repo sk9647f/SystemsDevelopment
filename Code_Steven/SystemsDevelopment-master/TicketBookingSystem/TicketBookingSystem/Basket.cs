@@ -44,7 +44,7 @@ namespace TicketBookingSystem
             string initialreturn;
             int intreturn;
             string addString = "";
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
@@ -98,17 +98,27 @@ namespace TicketBookingSystem
         {
             string returnoutput = "";
             string connString = "";
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
-            OleDbCommand myCommand = new OleDbCommand("SELECT * FROM User", myConnection);
+            OleDbCommand myCommand = new OleDbCommand("SELECT * FROM Basket WHERE UserID = @OrderID", myConnection);
 
-            //myCommand.Parameters.AddWithValue("@Username", username);
+            myCommand.Parameters.AddWithValue("@OrderID", username);
             OleDbDataReader reader = myCommand.ExecuteReader();
             while (reader.Read())
             {
-                returnoutput = reader.GetString(0);
+
+                returnoutput += "" + reader.GetInt32(0);
+                returnoutput += "\n" + reader.GetString(1);
+                returnoutput += "\n" + reader.GetString(2);
+                returnoutput += "\n" + reader.GetString(3);
+                returnoutput += "\n" + reader.GetString(4);
+                returnoutput += "\n" + reader.GetString(5);
+                returnoutput += "\n" + reader.GetDateTime(6);
+                returnoutput += "\n" + reader.GetString(7);
+                returnoutput += "\n" + reader.GetInt32(8);
+                returnoutput += "\n" + reader.GetInt32(9);
 
             }
 
@@ -126,7 +136,7 @@ namespace TicketBookingSystem
             string connString;
 
 
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
@@ -190,7 +200,7 @@ namespace TicketBookingSystem
         public override void RemoveFromBasket(string OrderID)
         {
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             
@@ -216,7 +226,7 @@ namespace TicketBookingSystem
             float checkValue;
             //needs to write to database 
             string connString;
-            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = L:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
 
             OleDbConnection myConnection = new OleDbConnection(connString);
             myConnection.Open();
@@ -278,5 +288,66 @@ namespace TicketBookingSystem
             }
             myConnection.Close();
         }
+
+
+        public string OrderHistory(string UserID)
+        {
+            string connString;
+            string initialreturn;
+            int intreturn;
+            string addString = "";
+            connString = @"Provider=Microsoft.JET.OLEDB.4.0;Data Source = F:\Year 2\Systems Development\Coursework\SystemsDevelopment-master\TicketBookingSystem\TicketBookingSystem\TicketSysDB.mdb";
+
+            OleDbConnection myConnection = new OleDbConnection(connString);
+            myConnection.Open();
+            OleDbCommand ReadCommand = new OleDbCommand("SELECT * FROM OrderHistory WHERE UserID = @UserID", myConnection);
+            ReadCommand.Parameters.AddWithValue("@OrderID", UserID);
+
+            OleDbDataReader reader = ReadCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                initialreturn = reader.GetString(3);
+
+                addString += "Title: " + initialreturn + "  ";
+                initialreturn = reader.GetDateTime(4).ToShortDateString();
+                addString += "Date: " + initialreturn + "  ";
+                initialreturn = reader.GetString(5);
+                addString += "Time: " + initialreturn + "\n";
+               
+                quantity = reader.GetInt32(7);
+                addString += "Ticket Quantity = " + quantity;
+                
+                initialreturn = reader.GetString(8);
+                addString += initialreturn + "  Standard Tickets";
+                initialreturn = reader.GetString(9);
+                addString += "    " + initialreturn + "  Child Tickets";
+                initialreturn = reader.GetString(10);
+                addString += "    " + initialreturn + "  OAP Tickets";
+             
+                intreturn = reader.GetInt32(6);
+                checkValue = intreturn;
+                addString += "Price = £" + intreturn;
+
+
+            }
+
+
+
+
+
+
+
+
+            myConnection.Close();
+
+
+
+            return addString;
+
+        }
+
+
+
+
     }
 }
