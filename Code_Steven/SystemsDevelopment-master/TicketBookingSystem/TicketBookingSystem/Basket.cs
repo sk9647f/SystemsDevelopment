@@ -163,7 +163,7 @@ namespace TicketBookingSystem
             myConnection.Close();
 
             myConnection.Open();
-            OleDbCommand myCommand = new OleDbCommand("INSERT INTO OrderHistory (UserID, OrderID, Play, DateOfPlay, TimeOfPlay, Price, Quantity, Standard, Child, OAP) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", myConnection);
+            OleDbCommand myCommand = new OleDbCommand("INSERT INTO OrderHistory (UserID, OrderID, Play, DateOfPlay, TimeOfPlay, Price, Quantity, Standard, Child, OAP, PurchaseDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", myConnection);
 
             myCommand.Parameters.AddWithValue("@UserID", UserID);
             myCommand.Parameters.AddWithValue("@OrderID", orderID);
@@ -175,6 +175,8 @@ namespace TicketBookingSystem
             myCommand.Parameters.AddWithValue("@Standard", Standard);
             myCommand.Parameters.AddWithValue("@Child", Child);
             myCommand.Parameters.AddWithValue("@OAP", OAP);
+            DateTime today = DateTime.Today;
+            myCommand.Parameters.AddWithValue("@PurchaseDate", today);
 
             
             myCommand.ExecuteNonQuery();
@@ -327,6 +329,10 @@ namespace TicketBookingSystem
                 intreturn = reader.GetInt32(6);
                 checkValue = intreturn;
                 addString += "Price = £" + intreturn;
+                addString += "\n";
+                DateTime purchaseDate = reader.GetDateTime(11);
+                addString += "" + purchaseDate;
+                addString += "\n";
 
 
             }
