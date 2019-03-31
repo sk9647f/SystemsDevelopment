@@ -1,5 +1,1 @@
-Form currently allows for input, update and delete from the database tables.
-No current check for if the user is logged into a staff or customer account.
-Can search via date.   Date in format (dd/mm/yyyy    20/03/2019) will not work if date is not formatted as such.
-Booking functions aren't in place yet.
-No real error handling has been put in place, however majority of system crashes have been resolved.
+
